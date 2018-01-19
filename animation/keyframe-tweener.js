@@ -35,6 +35,22 @@
 
     let keyframeData = {};
 
+    let vals = ['tx', 'ty', 'sx', 'sy', 'rotate', 'opacity', 'wingOpenAmount', 'aimAmount', 'howReady', 'showing', 'direction']
+
+    let valueDefaults = {
+      tx: 0,
+      ty: 0,
+      sx: 1.0,
+      sy: 1.0,
+      rotate: 0,
+      opacity: 1.0,
+      wingOpenAmount: 0.0,
+      aimAmount: 0.0,
+      howReady: 0.0,
+      showing: false,
+      direction: 1.0
+    }
+
     // Avoid having to go through settings to get to the
     // rendering context and sprites.
     let renderingContext = settings.renderingContext;
@@ -122,7 +138,7 @@
 
             // Set up our start and distance values, using defaults
             // if necessary.
-            let ease = KeyframeTweener[startKeyframe.ease || checkPastFrames(scene[i]["sprite"], "ease", "linear").val];
+            let ease = KeyframeTweener[startKeyframe.ease || checkPastFrames(scene[i]['sprite'], 'ease', 'linear').val];
 
             // NEW CODE ***************************************************
             let past;
@@ -131,198 +147,78 @@
             let distance;
             let currentTweenFrame;
             let duration;
+            let wingOpenAmount;
+            let aimAmount;
+            let howReady;
+            let showing;
+            let direction;
 
-            for (let val in currentKeyframe) {
-              if (currentKeyframe.hasOwnProperty(val)) {
-                past = checkPastFrames(scene[i]["sprite"], val, 0);
-                future = checkFutureFrames(scene[i]["sprite"], val, 0);
+            vals.forEach((val) => {
+              // console.log('Val: ', val);
+              // console.log('Val default: ', valueDefaults[val]);
+              past = checkPastFrames(scene[i]['sprite'], val, valueDefaults[val]);
+              future = checkFutureFrames(scene[i]['sprite'], val, valueDefaults[val]);
 
-                start = startKeyframe[val] || past.val;
-                distance = (endKeyframe[val] || future.val) - start;
+              start = startKeyframe[val] || past.val;
+              distance = (endKeyframe[val] || future.val) - start;
 
-                currentTweenFrame = currentFrame - past.frame;
-                duration = future.frame - past.frame;
+              currentTweenFrame = currentFrame - past.frame;
+              duration = future.frame - past.frame;
 
-                if (val === "tx") {
-                  renderingContext.translate(
-                    ease(currentTweenFrame, start, distance, duration),
-                    0
-                  );
-                } else if (val === "ty") {
-                  renderingContext.translate(
-                    0,
-                    ease(currentTweenFrame, start, distance, duration)
-                  );
-                } else if (val === "sx") {
-                  renderingContext.scale(
-                    ease(currentTweenFrame, start, distance, duration),
-                    1.0
-                  );
-                } else if (val === "sy") {
-                  renderingContext.scale(
-                    1.0,
-                    ease(currentTweenFrame, start, distance, duration)
-                  );
-                } else if (val === "rotate") {
-                  renderingContext.rotate(
-                    ease(currentTweenFrame, start, distance, duration)
-                  );
-                }
+              if (val === 'tx') {
+                renderingContext.translate(
+                  ease(currentTweenFrame, start, distance, duration),
+                  0
+                );
+              } else if (val === 'ty') {
+                renderingContext.translate(
+                  0,
+                  ease(currentTweenFrame, start, distance, duration)
+                );
+              } else if (val === 'sx' || val === 'sy') {
+                renderingContext.scale(
+                  ease(currentTweenFrame, start, distance, duration),
+                  ease(currentTweenFrame, start, distance, duration)
+                );
+              } else if (val === 'rotate') {
+                distance += start;
+                start *=  -1 * Math.PI / 180;
+                distance *= -1 * Math.PI / 180;
+                distance -= start;
+                renderingContext.rotate(
+                  ease(currentTweenFrame, start, distance, duration)
+                );
+              } else if (val === 'opacity') {
+                renderingContext.globalAlpha =
+                  ease(currentTweenFrame, start, distance, duration);
+              } else if (val === 'wingOpenAmount') {
+                wingOpenAmount = ease(currentTweenFrame, start, distance, duration);
+              } else if (val === 'aimAmount') {
+                aimAmount = ease(currentTweenFrame, start, distance, duration);
+              } else if (val === 'howReady') {
+                howReady = ease(currentTweenFrame, start, distance, duration);
+              } else if (val === 'showing') {
+                // if (i === 6) {
+                //   console.log('keyframe: ', startKeyframe.showing);
+                //   console.log('past    : ', past.val);
+                // }
+                showing = (startKeyframe.showing || past.val);
+              } else if (val === 'direction') {
+                direction = (startKeyframe.direction || past.val);
               }
-            }
+            });
             // NEW CODE ***************************************************
 
-
-            // // ************************************************************
-            // let val = "tx";
-            // let past = checkPastFrames(scene[i]["sprite"], val, 0);
-            // let future = checkFutureFrames(scene[i]["sprite"], val, 0);
-            // // ************************************************************
-            //
-            // let txStart = startKeyframe.tx || past.val;
-            // let txDistance = (endKeyframe.tx || future.val) - txStart;
-            //
-            // let txCurrentTweenFrame = currentFrame - past.frame;
-            // let txDuration = future.frame - past.frame;
-            //
-            // // ************************************************************
-            // val = "ty";
-            // past = checkPastFrames(scene[i]["sprite"], val, 0);
-            // future = checkFutureFrames(scene[i]["sprite"], val, 0);
-            // // ************************************************************
-            //
-            // let tyStart = startKeyframe.ty || past.val;
-            // let tyDistance = (endKeyframe.ty || future.val) - tyStart;
-            //
-            // let tyCurrentTweenFrame = currentFrame - past.frame;
-            // let tyDuration = future.frame - past.frame + 1;
-            //
-            // // ************************************************************
-            // val = "sx";
-            // past = checkPastFrames(scene[i]["sprite"], val, 1);
-            // future = checkFutureFrames(scene[i]["sprite"], val, 1);
-            // // ************************************************************
-            //
-            // let sxStart = startKeyframe.sx || past.val;
-            // let sxDistance = (endKeyframe.sx || future.val) - sxStart;
-            //
-            // let sxCurrentTweenFrame = currentFrame - past.frame;
-            // let sxDuration = future.frame - past.frame;
-            //
-            // // ************************************************************
-            // val = "sy";
-            // past = checkPastFrames(scene[i]["sprite"], val, 1);
-            // future = checkFutureFrames(scene[i]["sprite"], val, 1);
-            // // ************************************************************
-            //
-            // let syStart = startKeyframe.sy || past.val;
-            // let syDistance = (endKeyframe.sy || future.val) - syStart;
-            //
-            // let syCurrentTweenFrame = currentFrame - past.frame;
-            // let syDuration = future.frame - past.frame;
-            //
-            // // ************************************************************
-            // val = "rotate";
-            // past = checkPastFrames(scene[i]["sprite"], val, 0);
-            // future = checkFutureFrames(scene[i]["sprite"], val, 0);
-            // // ************************************************************
-            //
-            // let rotateStart = (startKeyframe.rotate || past.val) * -1 * Math.PI / 180;
-            // let rotateDistance = (endKeyframe.rotate || future.val) * -1 * Math.PI / 180 - rotateStart;
-            //
-            // let rotCurrentTweenFrame = currentFrame - past.frame;
-            // let rotDuration = future.frame - past.frame;
-            //
-            // // ************************************************************
-            // val = "opacity";
-            // past = checkPastFrames(scene[i]["sprite"], val, 1.0);
-            // future = checkFutureFrames(scene[i]["sprite"], val, 1.0);
-            // // ************************************************************
-            //
-            // let opacityStart = (startKeyframe.opacity || past.val);
-            // let opacityDistance = (endKeyframe.opacity || future.val) - opacityStart;
-            //
-            // let opacityCurrentTweenFrame = currentFrame - past.frame;
-            // let opacityDuration = future.frame - past.frame;
-            //
-            // // ************************************************************
-            // val = "wingOpenAmount";
-            // past = checkPastFrames(scene[i]["sprite"], val, 0.0);
-            // future = checkFutureFrames(scene[i]["sprite"], val, 0.0);
-            // // ************************************************************
-            //
-            // let wingStart = (startKeyframe.wingOpenAmount || past.val);
-            // let wingDistance = (endKeyframe.wingOpenAmount || future.val) - wingStart;
-            //
-            // let wingCurrentTweenFrame = currentFrame - past.frame;
-            // let wingDuration = future.frame - past.frame;
-            //
-            // // ************************************************************
-            // val = "aimAmount";
-            // past = checkPastFrames(scene[i]["sprite"], val, 0.0);
-            // future = checkFutureFrames(scene[i]["sprite"], val, 0.0);
-            // // ************************************************************
-            //
-            // let aimStart = (startKeyframe.aimAmount || past.val);
-            // let aimDistance = (endKeyframe.aimAmount || future.val) - aimStart;
-            //
-            // let aimCurrentTweenFrame = currentFrame - past.frame;
-            // let aimDuration = future.frame - past.frame;
-            //
-            // // ************************************************************
-            // val = "howReady";
-            // past = checkPastFrames(scene[i]["sprite"], val, 0.0);
-            // future = checkFutureFrames(scene[i]["sprite"], val, 0.0);
-            // // ************************************************************
-            //
-            // let howReadyStart = (startKeyframe.howReady || past.val);
-            // let howReadyDistance = (endKeyframe.howReady || future.val) - howReadyStart;
-            //
-            // let howReadyCurrentTweenFrame = currentFrame - past.frame;
-            // let howReadyDuration = future.frame - past.frame;
-            //
-            //
-            // // Build our transform according to where we should be.
-            // renderingContext.translate(
-            //   ease(txCurrentTweenFrame, txStart, txDistance, txDuration),
-            //   ease(tyCurrentTweenFrame, tyStart, tyDistance, tyDuration)
-            // );
-            //
-            // renderingContext.rotate(
-            //   ease(rotCurrentTweenFrame, rotateStart, rotateDistance, rotDuration)
-            // );
-            //
-            // renderingContext.scale(
-            //   ease(sxCurrentTweenFrame, sxStart, sxDistance, sxDuration),
-            //   ease(syCurrentTweenFrame, syStart, syDistance, syDuration)
-            // );
-            //
-            // renderingContext.scale(
-            //   ease(sxCurrentTweenFrame, sxStart, sxDistance, sxDuration),
-            //   ease(syCurrentTweenFrame, syStart, syDistance, syDuration)
-            // );
-
-            renderingContext.globalAlpha =
-            // ease(opacityCurrentTweenFrame, opacityStart, opacityDistance, opacityDuration);
-            //
-            // let wingOpenAmount = ease(wingCurrentTweenFrame, wingStart, wingDistance, wingDuration);
-            // let aimAmount = ease(aimCurrentTweenFrame, aimStart, aimDistance, aimDuration);
-            // let howReady = ease(howReadyCurrentTweenFrame, howReadyStart, howReadyDistance, howReadyDuration);
-
-            past = checkPastFrames(scene[i]["sprite"], "showing", false);
-            let showing = (startKeyframe.showing || past.val);
-
-            past = checkPastFrames(scene[i]["sprite"], "direction", 1.0);
-            let direction = (startKeyframe.direction || past.val);
-
-            // Draw the sprite.
             if (showing === true) {
+              if (i === 6) {
+                console.log("yo");
+              }
               SampleSpriteLibrary[scene[i].sprite]({
                 renderingContext,
                 direction,
-                // wingOpenAmount,
-                // aimAmount,
-                // howReady
+                wingOpenAmount,
+                aimAmount,
+                howReady
               });
             }
 
@@ -339,7 +235,7 @@
     };
 
     for (let i = 0, maxI = scene.length; i < maxI; i++) {
-      let currentSprite = scene[i]["sprite"];
+      let currentSprite = scene[i]['sprite'];
       if (!(currentSprite in keyframeData)) {
         keyframeData[currentSprite] = {};
       }
@@ -381,8 +277,8 @@
     quadEaseInAndOut: (currentTime, start, distance, duration) => {
       let percentComplete = currentTime / (duration / 2);
       return (percentComplete < 1) ?
-        (distance / 2) * percentComplete * percentComplete + start :
-        (-distance / 2) * ((percentComplete - 1) * (percentComplete - 3) - 1) + start;
+      (distance / 2) * percentComplete * percentComplete + start :
+      (-distance / 2) * ((percentComplete - 1) * (percentComplete - 3) - 1) + start;
     },
 
     easeInOutCirc: function (currentTime, start, distance, duration) {
