@@ -30,6 +30,7 @@
   // - sx, sy: the scale factor of the sprite (default is 1, 1)
   // - rotate: the rotation angle of the sprite (default is 0)
   let initializeAnimation = (settings) => {
+    console.log('hello');
     // We need to keep track of the current frame.
     let currentFrame = 0;
 
@@ -49,7 +50,7 @@
       howReady: 0.0,
       showing: false,
       direction: 1.0
-    }
+    };
 
     // Avoid having to go through settings to get to the
     // rendering context and sprites.
@@ -128,7 +129,6 @@
           if ((currentKeyframe.frame <= currentFrame) &&
           (currentFrame < scene[i].keyframes[j + 1].frame)) {
 
-
             // Point to the start and end keyframes.
             let startKeyframe = currentKeyframe;
             let endKeyframe = scene[i].keyframes[j + 1];
@@ -182,7 +182,7 @@
                 );
               } else if (val === 'rotate') {
                 distance += start;
-                start *=  -1 * Math.PI / 180;
+                start *= -1 * Math.PI / 180;
                 distance *= -1 * Math.PI / 180;
                 distance -= start;
                 ctx.rotate(
@@ -190,7 +190,7 @@
                 );
               } else if (val === 'opacity') {
                 ctx.globalAlpha =
-                  ease(currentTweenFrame, start, distance, duration);
+                ease(currentTweenFrame, start, distance, duration);
               } else if (val === 'wingOpenAmount') {
                 wingOpenAmount = ease(currentTweenFrame, start, distance, duration);
               } else if (val === 'aimAmount') {
@@ -205,13 +205,15 @@
             });
             // NEW CODE ***************************************************
 
+            let openGates = [1, 2, 5, 9];
             if (showing === true) {
               SampleSpriteLibrary[scene[i].sprite]({
                 ctx,
                 direction,
                 wingOpenAmount,
                 aimAmount,
-                howReady
+                howReady,
+                openGates
               });
             }
 
@@ -273,8 +275,8 @@
     quadEaseInAndOut: (currentTime, start, distance, duration) => {
       let percentComplete = currentTime / (duration / 2);
       return (percentComplete < 1) ?
-      (distance / 2) * percentComplete * percentComplete + start :
-      (-distance / 2) * ((percentComplete - 1) * (percentComplete - 3) - 1) + start;
+        (distance / 2) * percentComplete * percentComplete + start :
+        (-distance / 2) * ((percentComplete - 1) * (percentComplete - 3) - 1) + start;
     },
 
     easeInOutCirc: function (currentTime, start, distance, duration) {

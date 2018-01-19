@@ -1,161 +1,102 @@
 (() => {
-    window.SampleSpriteLibrary = window.SampleSpriteLibrary || {};
+  window.SampleSpriteLibrary = window.SampleSpriteLibrary || {};
 
-    const XW_HEIGHT = 200;
-    const XW_WIDTH = XW_HEIGHT;
-    const WING_OPEN = 1.0;
-    const WING_CLOSED = 0.0;
-    const WING_ANGLE = 15.0;
+  // Max number of gate slots on track
+  const NUMBER_OF_GATES = 14;
+  const OPEN = true;
+  const CLOSED = false;
+  const GATE_WIDTH = 10;
 
-    let howOpen = WING_OPEN;
-
-
-    // Hold off on drawing
-    let readyLeftLower = false;
-    let readyLeftUpper = false;
-    let readyRightLower = false;
-    let readyRightUpper = false;
-    let readyBody = false;
-
-
-    // Import and prime images for drawing
-    var xwingLeftLowerImage = new Image();
-    xwingLeftLowerImage.onload = () => {
-        readyLeftLower = true;
-    };
-    xwingLeftLowerImage.src = "images/x-wing/x-wing-drawing-left-lower.svg";
-
-    var xwingLeftUpperImage = new Image();
-    xwingLeftUpperImage.onload = () => {
-        readyLeftUpper = true;
-    };
-    xwingLeftUpperImage.src = "images/x-wing/x-wing-drawing-left-upper.svg";
-
-    var xwingRightLowerImage = new Image();
-    xwingRightLowerImage.onload = () => {
-        readyRightLower = true;
-    };
-    xwingRightLowerImage.src = "images/x-wing/x-wing-drawing-right-lower.svg";
-
-    var xwingRightUpperImage = new Image();
-    xwingRightUpperImage.onload = () => {
-        readyRightUpper = true;
-    };
-    xwingRightUpperImage.src = "images/x-wing/x-wing-drawing-right-upper.svg";
-
-    var xwingBodyImage = new Image();
-    xwingBodyImage.onload = () => {
-        readyBody = true;
-
-    };
-    xwingBodyImage.src = "images/x-wing/x-wing-drawing-body.svg";
+  // Populate gates object with key values indicating gate openness
+  let gates = (() => {
+    let gateNumbers = {};
+    for (let i = 0; i < NUMBER_OF_GATES; i += 1) {
+      gateNumbers[i] = CLOSED;
+    }
+    return gateNumbers;
+  })();
 
 
-    let drawLeftLower = (ctx) => {
-        ctx.save();
-        if (readyLeftLower) {
-            ctx.drawImage(xwingLeftLowerImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
-        }
-        ctx.restore();
-    };
 
-    let drawLeftUpper = (ctx) => {
-        ctx.save();
-        if (readyLeftUpper) {
-            ctx.drawImage(xwingLeftUpperImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
-        }
-        ctx.restore();
-    };
+  let drawTrack = (ctx) => {
+    ctx.save();
 
-    let drawRightLower = (ctx) => {
-        ctx.save();
-        if (readyRightLower) {
-            ctx.drawImage(xwingRightLowerImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
-        }
-        ctx.restore();
-    };
+    // ctx.fillStyle = radialGradient;
+    ctx.strokeStyle = "black";
 
-    let drawRightUpper = (ctx) => {
-        ctx.save();
-        if (readyRightUpper) {
-            ctx.drawImage(xwingRightUpperImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
-        }
-        ctx.restore();
-    };
+    // Perimeter
+    ctx.lineWidth = 10;
+    ctx.beginPath();
+    ctx.moveTo(250, -250);
+    ctx.lineTo(-250, -250);
+    ctx.arc(-250, 0, 250, 3 / 2 * Math.PI, 1 / 2 * Math.PI, true);
+    ctx.lineTo(250, 250);
+    ctx.arc(250, 0, 250, 1 / 2 * Math.PI, 3 / 2 * Math.PI, true);
+    ctx.lineTo(250, -100); // Gate line
+    ctx.stroke();
 
-    let drawBody = (ctx) => {
-        ctx.save();
-        if (readyBody) {
-            ctx.drawImage(xwingBodyImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
-        }
-        ctx.restore();
-    };
+    // Inside boundary
+    ctx.lineWidth = 10;
+    ctx.beginPath();
+    ctx.moveTo(250, -100);
+    ctx.lineTo(-250, -100);
+    ctx.arc(-250, 0, 100, 3 / 2 * Math.PI, 1 / 2 * Math.PI, true);
+    ctx.lineTo(250, 100);
+    ctx.arc(250, 0, 100, 1 / 2 * Math.PI, 3 / 2 * Math.PI, true);
+    ctx.stroke();
 
-    let rotateLeftLower = (ctx, openAmount) => {
-        ctx.save();
-        if (openAmount <= WING_OPEN && openAmount >= WING_CLOSED) {
-            ctx.rotate(((1 - openAmount) * WING_ANGLE) * Math.PI / 180);
-            howOpen = openAmount;
-        } else {
-            ctx.rotate(((1 - howOpen) * WING_ANGLE) * Math.PI / 180);
-        }
-        drawLeftLower(ctx);
-        ctx.restore();
-    };
+    // Gates
+    ctx.lineWidth = .5;
+    for (let i = 1; i < 16; i += 1) {
+      ctx.beginPath();
+      let targetY = -250 + (10 * i);
+      ctx.moveTo(250, targetY);
+      ctx.lineTo(225, targetY);
+      ctx.stroke();
+    }
 
-    let rotateLeftUpper = (ctx, openAmount) => {
-        ctx.save();
-        if (openAmount <= WING_OPEN && openAmount >= WING_CLOSED) {
-            ctx.rotate((-(1 - openAmount) * WING_ANGLE) * Math.PI / 180);
-            howOpen = openAmount;
-        } else {
-            ctx.rotate((-(1 - howOpen) * WING_ANGLE) * Math.PI / 180);
-        }
-        drawLeftUpper(ctx);
-        ctx.restore();
-    };
+    ctx.restore();
+  };
 
-    let rotateRightLower = (ctx, openAmount) => {
-        ctx.save();
-        if (openAmount <= WING_OPEN && openAmount >= WING_CLOSED) {
-            ctx.rotate((-(1 - openAmount) * WING_ANGLE) * Math.PI / 180);
-            howOpen = openAmount;
-        } else {
-            ctx.rotate((-(1 - howOpen) * WING_ANGLE) * Math.PI / 180);
-        }
-        drawRightLower(ctx);
-        ctx.restore();
-    };
+  // TODO: Clean up magic numbers
+  // TODO: Adjust to display correctly
+  let drawGates = (ctx) => {
+    ctx.save();
+    ctx.lineWidth = .5;
+    for (let i = 0; i < Object.keys(gates).length; i += 1) {
+      let startX = 225;
+      let startY = -250 + (i * GATE_WIDTH);
+      let targetX = startX;
+      let targetY = -250 + ((i - 1) * GATE_WIDTH);
+      if (gates[i]) {
+        targetX = 215;
+        targetY = startY;
+      }
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(targetX, targetY);
+      ctx.stroke();
+    }
+    ctx.restore();
+  };
 
-    let rotateRightUpper = (ctx, openAmount) => {
-        ctx.save();
-        if (openAmount <= WING_OPEN && openAmount >= WING_CLOSED) {
-            ctx.rotate(((1 - openAmount) * WING_ANGLE) * Math.PI / 180);
-            howOpen = openAmount;
-        } else {
-            ctx.rotate(((1 - howOpen) * WING_ANGLE) * Math.PI / 180);
-        }
-        drawRightUpper(ctx);
-        ctx.restore();
-    };
+  let openGate = (openGates) => {
+    console.log('gates: ', gates);
+    openGates.forEach((gate) => {
+      console.log('gate: ', gate);
+      gates[gate] = OPEN;
+    });
+  };
 
-    let foldWings = (ctx, openAmount) => {
-        ctx.save();
-        rotateLeftLower(ctx, openAmount);
-        rotateLeftUpper(ctx, openAmount);
-        rotateRightLower(ctx, openAmount);
-        rotateRightUpper(ctx, openAmount);
-        drawBody(ctx);
-        ctx.restore();
-    };
+  SampleSpriteLibrary.track = (conditions) => {
+    let ctx = conditions.ctx;
+    let openGates = conditions.openGates;
 
-    SampleSpriteLibrary.xwing = (flightPlan) => {
-        let ctx = flightPlan.ctx;
-        let wingOpenAmount = flightPlan.wingOpenAmount;
+    ctx.save();
+    drawTrack(ctx);
+    openGate(openGates);
+    drawGates(ctx);
+    ctx.restore();
+  };
 
-        ctx.save();
-        // drawXWing(ctx);
-        foldWings(ctx, wingOpenAmount);
-        ctx.restore();
-    };
 })();
