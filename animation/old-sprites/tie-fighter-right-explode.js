@@ -6,29 +6,29 @@
 
 
     // Hold off on drawing
-    let readyTieFighterRight = false;
+    let readyTieFighterRightExplode = false;
 
     // Import and prime images for drawing
-    var tieFighterRight = new Image();
-    tieFighterRight.onload = () => {
-        readyTieFighterRight = true;
+    var tieFighterRightExplode = new Image();
+    tieFighterRightExplode.onload = () => {
+        readyTieFighterRightExplode = true;
     };
-    tieFighterRight.src = "Images/tie-fighters/tie-fighter-right.svg";
+    tieFighterRightExplode.src = "images/tie-fighters/tie-fighter-right-explode.svg";
 
-    let drawTieFighterRight = (renderingContext) => {
+    let drawTieFighterRightExplode = (renderingContext) => {
         renderingContext.save();
-        if (readyTieFighterRight) {
-            renderingContext.drawImage(tieFighterRight,
+        if (readyTieFighterRightExplode) {
+            renderingContext.drawImage(tieFighterRightExplode,
                 -FIGHTERS_WIDTH / 2, -FIGHTERS_HEIGHT / 2, FIGHTERS_WIDTH, FIGHTERS_HEIGHT);
         }
         renderingContext.restore();
     };
 
-    SampleSpriteLibrary.tieFighterRight = (flightPlan) => {
+    SampleSpriteLibrary.tieFighterRightExplode = (flightPlan) => {
         let renderingContext = flightPlan.renderingContext;
 
         renderingContext.save();
-        drawTieFighterRight(renderingContext);
+        drawTieFighterRightExplode(renderingContext);
         renderingContext.restore();
     };
 })();

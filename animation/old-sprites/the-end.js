@@ -13,7 +13,7 @@
     text.onload = () => {
         readyText = true;
     };
-    text.src = "Images/text/yeehaw.svg";
+    text.src = "images/text/the-end.svg";
 
     let drawText = (renderingContext) => {
         renderingContext.save();
@@ -23,8 +23,8 @@
         renderingContext.restore();
     };
 
-    SampleSpriteLibrary.yeehaw = (shotFirst) => {
-        let renderingContext = shotFirst.renderingContext;
+    SampleSpriteLibrary.theEnd = (becauseIHadTo) => {
+        let renderingContext = becauseIHadTo.renderingContext;
 
         renderingContext.save();
         drawText(renderingContext);

@@ -22,31 +22,31 @@
     targettingComputerBody.onload = () => {
         readyBody = true;
     };
-    targettingComputerBody.src = "Images/targetting-computer/targetting-computer-body.svg";
+    targettingComputerBody.src = "images/targetting-computer/targetting-computer-body.svg";
 
     var targettingComputerMonitor = new Image();
     targettingComputerMonitor.onload = () => {
         readyMonitor = true;
     };
-    targettingComputerMonitor.src = "Images/targetting-computer/targetting-computer-monitor.svg";
+    targettingComputerMonitor.src = "images/targetting-computer/targetting-computer-monitor.svg";
 
     var targettingComputerTrench = new Image();
     targettingComputerTrench.onload = () => {
         readyTrench = true;
     };
-    targettingComputerTrench.src = "Images/targetting-computer/targetting-computer-trench.svg";
+    targettingComputerTrench.src = "images/targetting-computer/targetting-computer-trench.svg";
 
     var targettingComputerCrosshairsLeft = new Image();
     targettingComputerCrosshairsLeft.onload = () => {
         readyCrosshairsLeft = true;
     };
-    targettingComputerCrosshairsLeft.src = "Images/targetting-computer/targetting-computer-crosshairs-left.svg";
+    targettingComputerCrosshairsLeft.src = "images/targetting-computer/targetting-computer-crosshairs-left.svg";
 
     var targettingComputerCrosshairsRight = new Image();
     targettingComputerCrosshairsRight.onload = () => {
         readyCrosshairsRight = true;
     };
-    targettingComputerCrosshairsRight.src = "Images/targetting-computer/targetting-computer-crosshairs-right.svg";
+    targettingComputerCrosshairsRight.src = "images/targetting-computer/targetting-computer-crosshairs-right.svg";
 
     let drawBody = (renderingContext) => {
         renderingContext.save();

@@ -13,7 +13,7 @@
     tieFighterInside.onload = () => {
         readyTieFighterInside = true;
     };
-    tieFighterInside.src = "Images/tie-fighters/tie-fighter-inside.svg";
+    tieFighterInside.src = "images/tie-fighters/tie-fighter-inside.svg";
 
     let drawTieFightersInside = (renderingContext) => {
         renderingContext.save();

@@ -13,7 +13,7 @@
     boom.onload = () => {
         readyBoom = true;
     };
-    boom.src = "Images/boom/boom.svg";
+    boom.src = "images/boom/boom.svg";
 
     let drawBoom = (renderingContext) => {
         renderingContext.save();

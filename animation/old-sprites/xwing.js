@@ -23,32 +23,32 @@
     xwingLeftLowerImage.onload = () => {
         readyLeftLower = true;
     };
-    xwingLeftLowerImage.src = "Images/x-wing/x-wing-drawing-left-lower.svg";
+    xwingLeftLowerImage.src = "images/x-wing/x-wing-drawing-left-lower.svg";
 
     var xwingLeftUpperImage = new Image();
     xwingLeftUpperImage.onload = () => {
         readyLeftUpper = true;
     };
-    xwingLeftUpperImage.src = "Images/x-wing/x-wing-drawing-left-upper.svg";
+    xwingLeftUpperImage.src = "images/x-wing/x-wing-drawing-left-upper.svg";
 
     var xwingRightLowerImage = new Image();
     xwingRightLowerImage.onload = () => {
         readyRightLower = true;
     };
-    xwingRightLowerImage.src = "Images/x-wing/x-wing-drawing-right-lower.svg";
+    xwingRightLowerImage.src = "images/x-wing/x-wing-drawing-right-lower.svg";
 
     var xwingRightUpperImage = new Image();
     xwingRightUpperImage.onload = () => {
         readyRightUpper = true;
     };
-    xwingRightUpperImage.src = "Images/x-wing/x-wing-drawing-right-upper.svg";
+    xwingRightUpperImage.src = "images/x-wing/x-wing-drawing-right-upper.svg";
 
     var xwingBodyImage = new Image();
     xwingBodyImage.onload = () => {
         readyBody = true;
 
     };
-    xwingBodyImage.src = "Images/x-wing/x-wing-drawing-body.svg";
+    xwingBodyImage.src = "images/x-wing/x-wing-drawing-body.svg";
 
 
     let drawLeftLower = (renderingContext) => {

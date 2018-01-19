@@ -13,7 +13,7 @@
     laser.onload = () => {
         readyLaser = true;
     };
-    laser.src = "Images/shots/laser.svg";
+    laser.src = "images/shots/laser.svg";
 
     let drawLaser = (renderingContext) => {
         renderingContext.save();

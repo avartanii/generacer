@@ -13,7 +13,7 @@
     falcon.onload = () => {
         readyFalcon = true;
     };
-    falcon.src = "Images/falcon/millennium-falcon.svg";
+    falcon.src = "images/falcon/millennium-falcon.svg";
 
     let drawFalcon = (renderingContext) => {
         renderingContext.save();

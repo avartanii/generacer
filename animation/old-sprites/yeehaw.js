@@ -13,7 +13,7 @@
     text.onload = () => {
         readyText = true;
     };
-    text.src = "Images/text/use-the-force.svg";
+    text.src = "images/text/yeehaw.svg";
 
     let drawText = (renderingContext) => {
         renderingContext.save();
@@ -23,8 +23,8 @@
         renderingContext.restore();
     };
 
-    SampleSpriteLibrary.useTheForce = (master) => {
-        let renderingContext = master.renderingContext;
+    SampleSpriteLibrary.yeehaw = (shotFirst) => {
+        let renderingContext = shotFirst.renderingContext;
 
         renderingContext.save();
         drawText(renderingContext);

@@ -18,19 +18,19 @@
     trenchStars.onload = () => {
         readyTrenchStars = true;
     };
-    trenchStars.src = "Images/backgrounds/trench-stars.svg";
+    trenchStars.src = "images/backgrounds/trench-stars.svg";
 
     var trenchLines1 = new Image();
     trenchLines1.onload = () => {
         readyTrenchLines1 = true;
     };
-    trenchLines1.src = "Images/backgrounds/trench-lines-1.svg";
+    trenchLines1.src = "images/backgrounds/trench-lines-1.svg";
 
     var trenchLines2 = new Image();
     trenchLines2.onload = () => {
         readyTrenchLines2 = true;
     };
-    trenchLines2.src = "Images/backgrounds/trench-lines-2.svg";
+    trenchLines2.src = "images/backgrounds/trench-lines-2.svg";
 
     let drawTrenchStars = (renderingContext) => {
         renderingContext.save();

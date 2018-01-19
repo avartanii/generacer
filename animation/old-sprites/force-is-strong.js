@@ -13,7 +13,7 @@
     text.onload = () => {
         readyText = true;
     };
-    text.src = "Images/text/the-end.svg";
+    text.src = "images/text/force-is-strong.svg";
 
     let drawText = (renderingContext) => {
         renderingContext.save();
@@ -23,8 +23,8 @@
         renderingContext.restore();
     };
 
-    SampleSpriteLibrary.theEnd = (becauseIHadTo) => {
-        let renderingContext = becauseIHadTo.renderingContext;
+    SampleSpriteLibrary.forceIsStrong = (father) => {
+        let renderingContext = father.renderingContext;
 
         renderingContext.save();
         drawText(renderingContext);

@@ -13,7 +13,7 @@
     tieFighters.onload = () => {
         readyTieFighters = true;
     };
-    tieFighters.src = "Images/tie-fighters/tie-fighters.svg";
+    tieFighters.src = "images/tie-fighters/tie-fighters.svg";
 
     let drawTieFighters = (renderingContext) => {
         renderingContext.save();

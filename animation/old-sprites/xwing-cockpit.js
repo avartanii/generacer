@@ -12,7 +12,7 @@
     xwingCockpitImage.onload = () => {
         readyCockpit = true;
     };
-    xwingCockpitImage.src = "Images/x-wing/x-wing-drawing-cockpit.svg";
+    xwingCockpitImage.src = "images/x-wing/x-wing-drawing-cockpit.svg";
 
     let drawCockpit = (renderingContext) => {
         renderingContext.save();

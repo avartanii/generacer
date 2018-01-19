@@ -13,7 +13,7 @@
     spaceBlank.onload = () => {
         readySpaceBlank = true;
     };
-    spaceBlank.src = "Images/backgrounds/space-blank.svg";
+    spaceBlank.src = "images/backgrounds/space-blank.svg";
 
     let drawSpaceBlank = (renderingContext) => {
         renderingContext.save();

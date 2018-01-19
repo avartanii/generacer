@@ -13,7 +13,7 @@
     shots.onload = () => {
         readyShots = true;
     };
-    shots.src = "Images/shots/shots.svg";
+    shots.src = "images/shots/shots.svg";
 
     let drawShots = (renderingContext) => {
         renderingContext.save();

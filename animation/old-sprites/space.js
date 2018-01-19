@@ -13,7 +13,7 @@
     space.onload = () => {
         readySpace = true;
     };
-    space.src = "Images/backgrounds/space.svg";
+    space.src = "images/backgrounds/space.svg";
 
     let drawSpace = (renderingContext) => {
         renderingContext.save();

@@ -13,7 +13,7 @@
     text.onload = () => {
         readyText = true;
     };
-    text.src = "Images/text/force-is-strong.svg";
+    text.src = "images/text/use-the-force.svg";
 
     let drawText = (renderingContext) => {
         renderingContext.save();
@@ -23,8 +23,8 @@
         renderingContext.restore();
     };
 
-    SampleSpriteLibrary.forceIsStrong = (father) => {
-        let renderingContext = father.renderingContext;
+    SampleSpriteLibrary.useTheForce = (master) => {
+        let renderingContext = master.renderingContext;
 
         renderingContext.save();
         drawText(renderingContext);

@@ -13,7 +13,7 @@
     tieFighterVader.onload = () => {
         readyTieFighterVader = true;
     };
-    tieFighterVader.src = "Images/tie-fighters/tie-fighter-vader.svg";
+    tieFighterVader.src = "images/tie-fighters/tie-fighter-vader.svg";
 
     let drawTieFighterVader = (renderingContext) => {
         renderingContext.save();

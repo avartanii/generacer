@@ -13,7 +13,7 @@
     tieFightersBack.onload = () => {
         readyTieFightersBack = true;
     };
-    tieFightersBack.src = "Images/tie-fighters/tie-fighters-back.svg";
+    tieFightersBack.src = "images/tie-fighters/tie-fighters-back.svg";
 
     let drawTieFightersBack = (renderingContext) => {
         renderingContext.save();

@@ -13,7 +13,7 @@
     exhaust.onload = () => {
         readyExhaust = true;
     };
-    exhaust.src = "Images/backgrounds/exhaust.svg";
+    exhaust.src = "images/backgrounds/exhaust.svg";
 
     let drawExhaust = (renderingContext) => {
         renderingContext.save();
