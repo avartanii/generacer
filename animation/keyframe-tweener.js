@@ -35,7 +35,7 @@
 
     let keyframeData = {};
 
-    let vals = ['tx', 'ty', 'sx', 'sy', 'rotate', 'opacity', 'wingOpenAmount', 'aimAmount', 'howReady', 'showing', 'direction']
+    let vals = [];
 
     let valueDefaults = {
       tx: 0,
@@ -198,10 +198,6 @@
               } else if (val === 'howReady') {
                 howReady = ease(currentTweenFrame, start, distance, duration);
               } else if (val === 'showing') {
-                // if (i === 6) {
-                //   console.log('keyframe: ', startKeyframe.showing);
-                //   console.log('past    : ', past.val);
-                // }
                 showing = (startKeyframe.showing || past.val);
               } else if (val === 'direction') {
                 direction = (startKeyframe.direction || past.val);
@@ -210,9 +206,6 @@
             // NEW CODE ***************************************************
 
             if (showing === true) {
-              if (i === 6) {
-                console.log("yo");
-              }
               SampleSpriteLibrary[scene[i].sprite]({
                 renderingContext,
                 direction,
@@ -243,6 +236,9 @@
         let currentKey = scene[i].keyframes[j];
         for (let property in currentKey) {
           if (currentKey.hasOwnProperty(property)) {
+            if (!vals.includes(property)) {
+              vals.push(property);
+            }
             if (!(property in keyframeData[currentSprite])) {
               keyframeData[currentSprite][property] = {};
               keyframeData[currentSprite][property][currentKey.frame] = currentKey[property];
