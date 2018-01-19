@@ -15,19 +15,19 @@
     };
     falcon.src = "images/falcon/millennium-falcon.svg";
 
-    let drawFalcon = (renderingContext) => {
-        renderingContext.save();
+    let drawFalcon = (ctx) => {
+        ctx.save();
         if (readyFalcon) {
-            renderingContext.drawImage(falcon, -FALCON_WIDTH / 2, -FALCON_HEIGHT / 2, FALCON_WIDTH, FALCON_HEIGHT);
+            ctx.drawImage(falcon, -FALCON_WIDTH / 2, -FALCON_HEIGHT / 2, FALCON_WIDTH, FALCON_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.falcon = (smuggler) => {
-        let renderingContext = smuggler.renderingContext;
+        let ctx = smuggler.ctx;
 
-        renderingContext.save();
-        drawFalcon(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawFalcon(ctx);
+        ctx.restore();
     };
 })();

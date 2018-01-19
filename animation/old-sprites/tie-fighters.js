@@ -15,19 +15,19 @@
     };
     tieFighters.src = "images/tie-fighters/tie-fighters.svg";
 
-    let drawTieFighters = (renderingContext) => {
-        renderingContext.save();
+    let drawTieFighters = (ctx) => {
+        ctx.save();
         if (readyTieFighters) {
-            renderingContext.drawImage(tieFighters, -FIGHTERS_WIDTH / 2, -FIGHTERS_HEIGHT / 2, FIGHTERS_WIDTH, FIGHTERS_HEIGHT);
+            ctx.drawImage(tieFighters, -FIGHTERS_WIDTH / 2, -FIGHTERS_HEIGHT / 2, FIGHTERS_WIDTH, FIGHTERS_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.tieFighters = (empireReppin) => {
-        let renderingContext = empireReppin.renderingContext;
+        let ctx = empireReppin.ctx;
 
-        renderingContext.save();
-        drawTieFighters(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawTieFighters(ctx);
+        ctx.restore();
     };
 })();

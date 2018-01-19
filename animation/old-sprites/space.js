@@ -15,19 +15,19 @@
     };
     space.src = "images/backgrounds/space.svg";
 
-    let drawSpace = (renderingContext) => {
-        renderingContext.save();
+    let drawSpace = (ctx) => {
+        ctx.save();
         if (readySpace) {
-            renderingContext.drawImage(space, -SPACE_WIDTH / 2, -SPACE_HEIGHT / 2, SPACE_WIDTH, SPACE_HEIGHT);
+            ctx.drawImage(space, -SPACE_WIDTH / 2, -SPACE_HEIGHT / 2, SPACE_WIDTH, SPACE_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.space = (flare) => {
-        let renderingContext = flare.renderingContext;
+        let ctx = flare.ctx;
 
-        renderingContext.save();
-        drawSpace(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawSpace(ctx);
+        ctx.restore();
     };
 })();

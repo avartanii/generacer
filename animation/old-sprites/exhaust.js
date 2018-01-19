@@ -15,19 +15,19 @@
     };
     exhaust.src = "images/backgrounds/exhaust.svg";
 
-    let drawExhaust = (renderingContext) => {
-        renderingContext.save();
+    let drawExhaust = (ctx) => {
+        ctx.save();
         if (readyExhaust) {
-            renderingContext.drawImage(exhaust, -EXHAUST_WIDTH / 2, -EXHAUST_HEIGHT / 2, EXHAUST_WIDTH, EXHAUST_HEIGHT);
+            ctx.drawImage(exhaust, -EXHAUST_WIDTH / 2, -EXHAUST_HEIGHT / 2, EXHAUST_WIDTH, EXHAUST_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.exhaust = (uhOh) => {
-        let renderingContext = uhOh.renderingContext;
+        let ctx = uhOh.ctx;
 
-        renderingContext.save();
-        drawExhaust(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawExhaust(ctx);
+        ctx.restore();
     };
 })();

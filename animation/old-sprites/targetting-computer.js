@@ -48,65 +48,65 @@
     };
     targettingComputerCrosshairsRight.src = "images/targetting-computer/targetting-computer-crosshairs-right.svg";
 
-    let drawBody = (renderingContext) => {
-        renderingContext.save();
+    let drawBody = (ctx) => {
+        ctx.save();
         if (readyBody) {
-            renderingContext.drawImage(targettingComputerBody, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
+            ctx.drawImage(targettingComputerBody, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
-    let drawTrench = (renderingContext) => {
-        renderingContext.save();
+    let drawTrench = (ctx) => {
+        ctx.save();
         if (readyTrench && readyMonitor) {
-            renderingContext.translate(.03 * TC_HEIGHT, -.016 * TC_HEIGHT);
+            ctx.translate(.03 * TC_HEIGHT, -.016 * TC_HEIGHT);
             if (trenchZoom >= TRENCH_ZOOM_MAX) {
                 trenchZoom = 0.0;
             }
-            renderingContext.save();
-            renderingContext.scale(trenchZoom, trenchZoom);
-            renderingContext.drawImage(targettingComputerTrench, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
-            renderingContext.restore();
-            renderingContext.save();
-            renderingContext.scale(.25 + trenchZoom, .25 + trenchZoom);
-            renderingContext.drawImage(targettingComputerTrench, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
-            renderingContext.restore();
-            renderingContext.save();
-            renderingContext.scale(.5 + trenchZoom, .5 + trenchZoom);
-            renderingContext.drawImage(targettingComputerTrench, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
-            renderingContext.restore();
-            renderingContext.save();
-            renderingContext.scale(.75 + trenchZoom, .75 + trenchZoom);
-            renderingContext.drawImage(targettingComputerTrench, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
-            renderingContext.restore();
+            ctx.save();
+            ctx.scale(trenchZoom, trenchZoom);
+            ctx.drawImage(targettingComputerTrench, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
+            ctx.restore();
+            ctx.save();
+            ctx.scale(.25 + trenchZoom, .25 + trenchZoom);
+            ctx.drawImage(targettingComputerTrench, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
+            ctx.restore();
+            ctx.save();
+            ctx.scale(.5 + trenchZoom, .5 + trenchZoom);
+            ctx.drawImage(targettingComputerTrench, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
+            ctx.restore();
+            ctx.save();
+            ctx.scale(.75 + trenchZoom, .75 + trenchZoom);
+            ctx.drawImage(targettingComputerTrench, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
+            ctx.restore();
             trenchZoom += .025;
         }
-        renderingContext.restore();
-        renderingContext.drawImage(targettingComputerMonitor, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
+        ctx.restore();
+        ctx.drawImage(targettingComputerMonitor, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
     };
 
-    let drawCrosshairs = (renderingContext, aimAmount) => {
+    let drawCrosshairs = (ctx, aimAmount) => {
         let translateAmount = aimAmount * CROSSHAIR_MAX;
         if (readyCrosshairsLeft && readyCrosshairsRight) {
-            renderingContext.save();
-            renderingContext.translate(.03 * TC_HEIGHT, -.016 * TC_HEIGHT);
+            ctx.save();
+            ctx.translate(.03 * TC_HEIGHT, -.016 * TC_HEIGHT);
             if (translateAmount >= CROSSHAIR_MAX) {
                 translateAmount = CROSSHAIR_MAX;
             }
-            renderingContext.save();
-            renderingContext.translate(translateAmount, 0);
-            renderingContext.drawImage(targettingComputerCrosshairsLeft, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
-            renderingContext.restore();
-            renderingContext.save();
-            renderingContext.translate(-translateAmount, 0);
-            renderingContext.drawImage(targettingComputerCrosshairsRight, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
-            renderingContext.restore();
-            renderingContext.restore();
-            renderingContext.drawImage(targettingComputerMonitor, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
+            ctx.save();
+            ctx.translate(translateAmount, 0);
+            ctx.drawImage(targettingComputerCrosshairsLeft, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
+            ctx.restore();
+            ctx.save();
+            ctx.translate(-translateAmount, 0);
+            ctx.drawImage(targettingComputerCrosshairsRight, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
+            ctx.restore();
+            ctx.restore();
+            ctx.drawImage(targettingComputerMonitor, -TC_WIDTH / 2, -TC_HEIGHT / 2, TC_WIDTH, TC_HEIGHT);
         }
     };
 
-    let drawNumbers = (renderingContext, aimAmount) => {
+    let drawNumbers = (ctx, aimAmount) => {
         if (readyMonitor) {
             let numbers = aimAmount <= 1.0 ? parseInt((1 - aimAmount) * COUNTDOWN_MAX) : 0.0;
             let numberOfZeros = aimAmount < 1.0 ? 5 - parseInt(Math.ceil(Math.log10(numbers))) : 4;
@@ -114,32 +114,32 @@
             for (var i = 0; i < numberOfZeros; i++) {
                 zeros += "0";
             }
-            renderingContext.save();
-            renderingContext.translate(.030 * TC_HEIGHT, .120 * TC_HEIGHT);
-            renderingContext.scale(TC_HEIGHT / 250, TC_HEIGHT / 250);
-            renderingContext.fillStyle = "red";
-            renderingContext.textAlign = "center";
-            renderingContext.font = '10px AG-Stencil';
-            renderingContext.fillText(zeros + "" + numbers, 0, 0);
-            renderingContext.restore();
+            ctx.save();
+            ctx.translate(.030 * TC_HEIGHT, .120 * TC_HEIGHT);
+            ctx.scale(TC_HEIGHT / 250, TC_HEIGHT / 250);
+            ctx.fillStyle = "red";
+            ctx.textAlign = "center";
+            ctx.font = '10px AG-Stencil';
+            ctx.fillText(zeros + "" + numbers, 0, 0);
+            ctx.restore();
         }
     };
 
-    let drawComputer = (renderingContext, aimAmount) => {
-        renderingContext.save();
-        drawBody(renderingContext);
-        drawTrench(renderingContext);
-        drawCrosshairs(renderingContext, aimAmount);
-        drawNumbers(renderingContext, aimAmount);
-        renderingContext.restore();
+    let drawComputer = (ctx, aimAmount) => {
+        ctx.save();
+        drawBody(ctx);
+        drawTrench(ctx);
+        drawCrosshairs(ctx, aimAmount);
+        drawNumbers(ctx, aimAmount);
+        ctx.restore();
     };
 
     SampleSpriteLibrary.targettingComputer = (readyToFire) => {
-        let renderingContext = readyToFire.renderingContext;
+        let ctx = readyToFire.ctx;
         let aimAmount = readyToFire.aimAmount;
 
-        renderingContext.save();
-        drawComputer(renderingContext, aimAmount);
-        renderingContext.restore();
+        ctx.save();
+        drawComputer(ctx, aimAmount);
+        ctx.restore();
     };
 })();

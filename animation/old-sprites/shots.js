@@ -15,19 +15,19 @@
     };
     shots.src = "images/shots/shots.svg";
 
-    let drawShots = (renderingContext) => {
-        renderingContext.save();
+    let drawShots = (ctx) => {
+        ctx.save();
         if (readyShots) {
-            renderingContext.drawImage(shots, -SHOTS_WIDTH / 2, -SHOTS_HEIGHT / 2, SHOTS_WIDTH, SHOTS_HEIGHT);
+            ctx.drawImage(shots, -SHOTS_WIDTH / 2, -SHOTS_HEIGHT / 2, SHOTS_WIDTH, SHOTS_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.shots = (pewPew) => {
-        let renderingContext = pewPew.renderingContext;
+        let ctx = pewPew.ctx;
 
-        renderingContext.save();
-        drawShots(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawShots(ctx);
+        ctx.restore();
     };
 })();

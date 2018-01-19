@@ -51,111 +51,111 @@
     xwingBodyImage.src = "images/x-wing/x-wing-drawing-body.svg";
 
 
-    let drawLeftLower = (renderingContext) => {
-        renderingContext.save();
+    let drawLeftLower = (ctx) => {
+        ctx.save();
         if (readyLeftLower) {
-            renderingContext.drawImage(xwingLeftLowerImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
+            ctx.drawImage(xwingLeftLowerImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
-    let drawLeftUpper = (renderingContext) => {
-        renderingContext.save();
+    let drawLeftUpper = (ctx) => {
+        ctx.save();
         if (readyLeftUpper) {
-            renderingContext.drawImage(xwingLeftUpperImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
+            ctx.drawImage(xwingLeftUpperImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
-    let drawRightLower = (renderingContext) => {
-        renderingContext.save();
+    let drawRightLower = (ctx) => {
+        ctx.save();
         if (readyRightLower) {
-            renderingContext.drawImage(xwingRightLowerImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
+            ctx.drawImage(xwingRightLowerImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
-    let drawRightUpper = (renderingContext) => {
-        renderingContext.save();
+    let drawRightUpper = (ctx) => {
+        ctx.save();
         if (readyRightUpper) {
-            renderingContext.drawImage(xwingRightUpperImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
+            ctx.drawImage(xwingRightUpperImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
-    let drawBody = (renderingContext) => {
-        renderingContext.save();
+    let drawBody = (ctx) => {
+        ctx.save();
         if (readyBody) {
-            renderingContext.drawImage(xwingBodyImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
+            ctx.drawImage(xwingBodyImage, -XW_WIDTH / 2, -XW_HEIGHT / 2, XW_WIDTH, XW_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
-    let rotateLeftLower = (renderingContext, openAmount) => {
-        renderingContext.save();
+    let rotateLeftLower = (ctx, openAmount) => {
+        ctx.save();
         if (openAmount <= WING_OPEN && openAmount >= WING_CLOSED) {
-            renderingContext.rotate(((1 - openAmount) * WING_ANGLE) * Math.PI / 180);
+            ctx.rotate(((1 - openAmount) * WING_ANGLE) * Math.PI / 180);
             howOpen = openAmount;
         } else {
-            renderingContext.rotate(((1 - howOpen) * WING_ANGLE) * Math.PI / 180);
+            ctx.rotate(((1 - howOpen) * WING_ANGLE) * Math.PI / 180);
         }
-        drawLeftLower(renderingContext);
-        renderingContext.restore();
+        drawLeftLower(ctx);
+        ctx.restore();
     };
 
-    let rotateLeftUpper = (renderingContext, openAmount) => {
-        renderingContext.save();
+    let rotateLeftUpper = (ctx, openAmount) => {
+        ctx.save();
         if (openAmount <= WING_OPEN && openAmount >= WING_CLOSED) {
-            renderingContext.rotate((-(1 - openAmount) * WING_ANGLE) * Math.PI / 180);
+            ctx.rotate((-(1 - openAmount) * WING_ANGLE) * Math.PI / 180);
             howOpen = openAmount;
         } else {
-            renderingContext.rotate((-(1 - howOpen) * WING_ANGLE) * Math.PI / 180);
+            ctx.rotate((-(1 - howOpen) * WING_ANGLE) * Math.PI / 180);
         }
-        drawLeftUpper(renderingContext);
-        renderingContext.restore();
+        drawLeftUpper(ctx);
+        ctx.restore();
     };
 
-    let rotateRightLower = (renderingContext, openAmount) => {
-        renderingContext.save();
+    let rotateRightLower = (ctx, openAmount) => {
+        ctx.save();
         if (openAmount <= WING_OPEN && openAmount >= WING_CLOSED) {
-            renderingContext.rotate((-(1 - openAmount) * WING_ANGLE) * Math.PI / 180);
+            ctx.rotate((-(1 - openAmount) * WING_ANGLE) * Math.PI / 180);
             howOpen = openAmount;
         } else {
-            renderingContext.rotate((-(1 - howOpen) * WING_ANGLE) * Math.PI / 180);
+            ctx.rotate((-(1 - howOpen) * WING_ANGLE) * Math.PI / 180);
         }
-        drawRightLower(renderingContext);
-        renderingContext.restore();
+        drawRightLower(ctx);
+        ctx.restore();
     };
 
-    let rotateRightUpper = (renderingContext, openAmount) => {
-        renderingContext.save();
+    let rotateRightUpper = (ctx, openAmount) => {
+        ctx.save();
         if (openAmount <= WING_OPEN && openAmount >= WING_CLOSED) {
-            renderingContext.rotate(((1 - openAmount) * WING_ANGLE) * Math.PI / 180);
+            ctx.rotate(((1 - openAmount) * WING_ANGLE) * Math.PI / 180);
             howOpen = openAmount;
         } else {
-            renderingContext.rotate(((1 - howOpen) * WING_ANGLE) * Math.PI / 180);
+            ctx.rotate(((1 - howOpen) * WING_ANGLE) * Math.PI / 180);
         }
-        drawRightUpper(renderingContext);
-        renderingContext.restore();
+        drawRightUpper(ctx);
+        ctx.restore();
     };
 
-    let foldWings = (renderingContext, openAmount) => {
-        renderingContext.save();
-        rotateLeftLower(renderingContext, openAmount);
-        rotateLeftUpper(renderingContext, openAmount);
-        rotateRightLower(renderingContext, openAmount);
-        rotateRightUpper(renderingContext, openAmount);
-        drawBody(renderingContext);
-        renderingContext.restore();
+    let foldWings = (ctx, openAmount) => {
+        ctx.save();
+        rotateLeftLower(ctx, openAmount);
+        rotateLeftUpper(ctx, openAmount);
+        rotateRightLower(ctx, openAmount);
+        rotateRightUpper(ctx, openAmount);
+        drawBody(ctx);
+        ctx.restore();
     };
 
     SampleSpriteLibrary.xwing = (flightPlan) => {
-        let renderingContext = flightPlan.renderingContext;
+        let ctx = flightPlan.ctx;
         let wingOpenAmount = flightPlan.wingOpenAmount;
 
-        renderingContext.save();
-        // drawXWing(renderingContext);
-        foldWings(renderingContext, wingOpenAmount);
-        renderingContext.restore();
+        ctx.save();
+        // drawXWing(ctx);
+        foldWings(ctx, wingOpenAmount);
+        ctx.restore();
     };
 })();

@@ -32,17 +32,17 @@
     };
     trenchLines2.src = "images/backgrounds/trench-lines-2.svg";
 
-    let drawTrenchStars = (renderingContext) => {
-        renderingContext.save();
+    let drawTrenchStars = (ctx) => {
+        ctx.save();
         if (readyTrenchStars) {
-            renderingContext.drawImage(trenchStars,
+            ctx.drawImage(trenchStars,
                 -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
-    let drawTrenchLines = (renderingContext, direction) => {
-        renderingContext.save();
+    let drawTrenchLines = (ctx, direction) => {
+        ctx.save();
         if (readyTrenchLines1 && readyTrenchLines2) {
             if (trenchZoom >= TRENCH_ZOOM_MAX) {
                 trenchZoom = 0.0;
@@ -50,66 +50,66 @@
             }
             if (switchImages) {
                 if (direction === 1.0) {
-                    renderingContext.save();
-                    renderingContext.scale(trenchZoom, trenchZoom);
-                    renderingContext.drawImage(trenchLines2,
+                    ctx.save();
+                    ctx.scale(trenchZoom, trenchZoom);
+                    ctx.drawImage(trenchLines2,
                         -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
-                    renderingContext.restore();
+                    ctx.restore();
                 }
-                renderingContext.save();
-                renderingContext.scale(.25 + (direction * trenchZoom), .25 + (direction * trenchZoom));
-                renderingContext.drawImage(trenchLines2, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
-                renderingContext.restore();
-                renderingContext.save();
-                renderingContext.scale(.5 + (direction * trenchZoom), .5 + (direction * trenchZoom));
-                renderingContext.drawImage(trenchLines1, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
-                renderingContext.restore();
-                renderingContext.save();
-                renderingContext.scale(.75 + (direction * trenchZoom), .75 + (direction * trenchZoom));
-                renderingContext.drawImage(trenchLines2, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
-                renderingContext.restore();
-                renderingContext.save();
-                renderingContext.scale(1.0 + (direction * trenchZoom), 1.0 + (direction * trenchZoom));
-                renderingContext.drawImage(trenchLines1, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
-                renderingContext.restore();
+                ctx.save();
+                ctx.scale(.25 + (direction * trenchZoom), .25 + (direction * trenchZoom));
+                ctx.drawImage(trenchLines2, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
+                ctx.restore();
+                ctx.save();
+                ctx.scale(.5 + (direction * trenchZoom), .5 + (direction * trenchZoom));
+                ctx.drawImage(trenchLines1, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
+                ctx.restore();
+                ctx.save();
+                ctx.scale(.75 + (direction * trenchZoom), .75 + (direction * trenchZoom));
+                ctx.drawImage(trenchLines2, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
+                ctx.restore();
+                ctx.save();
+                ctx.scale(1.0 + (direction * trenchZoom), 1.0 + (direction * trenchZoom));
+                ctx.drawImage(trenchLines1, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
+                ctx.restore();
                 trenchZoom += .05;
             } else {
                 if (direction === 1.0) {
-                    renderingContext.save();
-                    renderingContext.scale(trenchZoom, trenchZoom);
-                    renderingContext.drawImage(trenchLines2,
+                    ctx.save();
+                    ctx.scale(trenchZoom, trenchZoom);
+                    ctx.drawImage(trenchLines2,
                         -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
-                    renderingContext.restore();
+                    ctx.restore();
                 }
-                renderingContext.save();
-                renderingContext.scale(.25 + (direction * trenchZoom), .25 + (direction * trenchZoom));
-                renderingContext.drawImage(trenchLines1, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
-                renderingContext.restore();
-                renderingContext.save();
-                renderingContext.scale(.5 + (direction * trenchZoom), .5 + (direction * trenchZoom));
-                renderingContext.drawImage(trenchLines2, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
-                renderingContext.restore();
-                renderingContext.save();
-                renderingContext.scale(.75 + (direction * trenchZoom), .75 + (direction * trenchZoom));
-                renderingContext.drawImage(trenchLines1, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
-                renderingContext.restore();
-                renderingContext.save();
-                renderingContext.scale(1.0 + (direction * trenchZoom), 1.0 + (direction * trenchZoom));
-                renderingContext.drawImage(trenchLines2, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
-                renderingContext.restore();
+                ctx.save();
+                ctx.scale(.25 + (direction * trenchZoom), .25 + (direction * trenchZoom));
+                ctx.drawImage(trenchLines1, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
+                ctx.restore();
+                ctx.save();
+                ctx.scale(.5 + (direction * trenchZoom), .5 + (direction * trenchZoom));
+                ctx.drawImage(trenchLines2, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
+                ctx.restore();
+                ctx.save();
+                ctx.scale(.75 + (direction * trenchZoom), .75 + (direction * trenchZoom));
+                ctx.drawImage(trenchLines1, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
+                ctx.restore();
+                ctx.save();
+                ctx.scale(1.0 + (direction * trenchZoom), 1.0 + (direction * trenchZoom));
+                ctx.drawImage(trenchLines2, -TRENCH_WIDTH / 2, -TRENCH_HEIGHT / 2, TRENCH_WIDTH, TRENCH_HEIGHT);
+                ctx.restore();
                 trenchZoom += .05;
             }
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.trench = (dangerZone) => {
-        let renderingContext = dangerZone.renderingContext;
+        let ctx = dangerZone.ctx;
         let direction = dangerZone.direction;
 
-        renderingContext.save();
-        drawTrenchStars(renderingContext);
-        drawTrenchLines(renderingContext, direction);
-        renderingContext.restore();
+        ctx.save();
+        drawTrenchStars(ctx);
+        drawTrenchLines(ctx, direction);
+        ctx.restore();
     };
 })();

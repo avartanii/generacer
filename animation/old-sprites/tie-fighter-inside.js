@@ -15,19 +15,19 @@
     };
     tieFighterInside.src = "images/tie-fighters/tie-fighter-inside.svg";
 
-    let drawTieFightersInside = (renderingContext) => {
-        renderingContext.save();
+    let drawTieFightersInside = (ctx) => {
+        ctx.save();
         if (readyTieFighterInside) {
-            renderingContext.drawImage(tieFighterInside, -INSIDE_WIDTH / 2, -INSIDE_HEIGHT / 2, INSIDE_WIDTH, INSIDE_HEIGHT);
+            ctx.drawImage(tieFighterInside, -INSIDE_WIDTH / 2, -INSIDE_HEIGHT / 2, INSIDE_WIDTH, INSIDE_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.tieFighterInside = (pilot) => {
-        let renderingContext = pilot.renderingContext;
+        let ctx = pilot.ctx;
 
-        renderingContext.save();
-        drawTieFightersInside(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawTieFightersInside(ctx);
+        ctx.restore();
     };
 })();

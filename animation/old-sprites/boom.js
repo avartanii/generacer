@@ -15,19 +15,19 @@
     };
     boom.src = "images/boom/boom.svg";
 
-    let drawBoom = (renderingContext) => {
-        renderingContext.save();
+    let drawBoom = (ctx) => {
+        ctx.save();
         if (readyBoom) {
-            renderingContext.drawImage(boom, -BOOM_WIDTH / 2, -BOOM_HEIGHT / 2, BOOM_WIDTH, BOOM_HEIGHT);
+            ctx.drawImage(boom, -BOOM_WIDTH / 2, -BOOM_HEIGHT / 2, BOOM_WIDTH, BOOM_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.boom = (kaBoom) => {
-        let renderingContext = kaBoom.renderingContext;
+        let ctx = kaBoom.ctx;
 
-        renderingContext.save();
-        drawBoom(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawBoom(ctx);
+        ctx.restore();
     };
 })();

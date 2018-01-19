@@ -15,19 +15,19 @@
     };
     laser.src = "images/shots/laser.svg";
 
-    let drawLaser = (renderingContext) => {
-        renderingContext.save();
+    let drawLaser = (ctx) => {
+        ctx.save();
         if (readyLaser) {
-            renderingContext.drawImage(laser, -LASER_WIDTH / 2, -LASER_HEIGHT / 2, LASER_WIDTH, LASER_HEIGHT);
+            ctx.drawImage(laser, -LASER_WIDTH / 2, -LASER_HEIGHT / 2, LASER_WIDTH, LASER_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.laser = (pew) => {
-        let renderingContext = pew.renderingContext;
+        let ctx = pew.ctx;
 
-        renderingContext.save();
-        drawLaser(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawLaser(ctx);
+        ctx.restore();
     };
 })();

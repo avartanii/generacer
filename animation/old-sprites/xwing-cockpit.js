@@ -14,20 +14,20 @@
     };
     xwingCockpitImage.src = "images/x-wing/x-wing-drawing-cockpit.svg";
 
-    let drawCockpit = (renderingContext) => {
-        renderingContext.save();
+    let drawCockpit = (ctx) => {
+        ctx.save();
         if (readyCockpit) {
-            renderingContext.drawImage(xwingCockpitImage,
+            ctx.drawImage(xwingCockpitImage,
                 -XW_COCKPIT_WIDTH / 2, -XW_COCKPIT_HEIGHT / 2, XW_COCKPIT_WIDTH, XW_COCKPIT_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.xwingCockpit = (rebel) => {
-        let renderingContext = rebel.renderingContext;
+        let ctx = rebel.ctx;
 
-        renderingContext.save();
-        drawCockpit(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawCockpit(ctx);
+        ctx.restore();
     };
 })();

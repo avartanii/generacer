@@ -15,20 +15,20 @@
     };
     tieFightersBack.src = "images/tie-fighters/tie-fighters-back.svg";
 
-    let drawTieFightersBack = (renderingContext) => {
-        renderingContext.save();
+    let drawTieFightersBack = (ctx) => {
+        ctx.save();
         if (readyTieFightersBack) {
-            renderingContext.drawImage(tieFightersBack,
+            ctx.drawImage(tieFightersBack,
                 -FIGHTERS_WIDTH / 2, -FIGHTERS_HEIGHT / 2, FIGHTERS_WIDTH, FIGHTERS_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.tieFightersBack = (badAss) => {
-        let renderingContext = badAss.renderingContext;
+        let ctx = badAss.ctx;
 
-        renderingContext.save();
-        drawTieFightersBack(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawTieFightersBack(ctx);
+        ctx.restore();
     };
 })();

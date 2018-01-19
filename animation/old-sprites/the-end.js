@@ -15,19 +15,19 @@
     };
     text.src = "images/text/the-end.svg";
 
-    let drawText = (renderingContext) => {
-        renderingContext.save();
+    let drawText = (ctx) => {
+        ctx.save();
         if (readyText) {
-            renderingContext.drawImage(text, -TEXT_WIDTH / 2, -TEXT_HEIGHT / 2, TEXT_WIDTH, TEXT_HEIGHT);
+            ctx.drawImage(text, -TEXT_WIDTH / 2, -TEXT_HEIGHT / 2, TEXT_WIDTH, TEXT_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.theEnd = (becauseIHadTo) => {
-        let renderingContext = becauseIHadTo.renderingContext;
+        let ctx = becauseIHadTo.ctx;
 
-        renderingContext.save();
-        drawText(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawText(ctx);
+        ctx.restore();
     };
 })();

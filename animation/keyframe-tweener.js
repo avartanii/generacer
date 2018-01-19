@@ -7,7 +7,7 @@
   // is expected to be a JavaScript object with the following
   // properties:
   //
-  // - renderingContext: the 2D canvas rendering context to use
+  // - ctx: the 2D canvas rendering context to use
   // - width: the width of the canvas element
   // - height: the height of the canvas element
   // - scene: the array of sprites to animate
@@ -53,7 +53,7 @@
 
     // Avoid having to go through settings to get to the
     // rendering context and sprites.
-    let renderingContext = settings.renderingContext;
+    let ctx = settings.ctx;
     let width = settings.width;
     let height = settings.height;
     let scene = settings.scene;
@@ -114,7 +114,7 @@
       }
 
       // Clear the canvas.
-      renderingContext.clearRect(0, 0, width, height);
+      ctx.clearRect(0, 0, width, height);
 
       // For every sprite, go to the current pair of keyframes.
       // Then, draw the sprite based on the current frame.
@@ -134,7 +134,7 @@
             let endKeyframe = scene[i].keyframes[j + 1];
 
             // Save the rendering context state.
-            renderingContext.save();
+            ctx.save();
 
             // Set up our start and distance values, using defaults
             // if necessary.
@@ -166,17 +166,17 @@
               duration = future.frame - past.frame;
 
               if (val === 'tx') {
-                renderingContext.translate(
+                ctx.translate(
                   ease(currentTweenFrame, start, distance, duration),
                   0
                 );
               } else if (val === 'ty') {
-                renderingContext.translate(
+                ctx.translate(
                   0,
                   ease(currentTweenFrame, start, distance, duration)
                 );
               } else if (val === 'sx' || val === 'sy') {
-                renderingContext.scale(
+                ctx.scale(
                   ease(currentTweenFrame, start, distance, duration),
                   ease(currentTweenFrame, start, distance, duration)
                 );
@@ -185,11 +185,11 @@
                 start *=  -1 * Math.PI / 180;
                 distance *= -1 * Math.PI / 180;
                 distance -= start;
-                renderingContext.rotate(
+                ctx.rotate(
                   ease(currentTweenFrame, start, distance, duration)
                 );
               } else if (val === 'opacity') {
-                renderingContext.globalAlpha =
+                ctx.globalAlpha =
                   ease(currentTweenFrame, start, distance, duration);
               } else if (val === 'wingOpenAmount') {
                 wingOpenAmount = ease(currentTweenFrame, start, distance, duration);
@@ -207,7 +207,7 @@
 
             if (showing === true) {
               SampleSpriteLibrary[scene[i].sprite]({
-                renderingContext,
+                ctx,
                 direction,
                 wingOpenAmount,
                 aimAmount,
@@ -216,7 +216,7 @@
             }
 
             // Clean up.
-            renderingContext.restore();
+            ctx.restore();
           }
         }
       }

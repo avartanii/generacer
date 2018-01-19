@@ -1,6 +1,6 @@
 (() => {
     let canvas = $("#canvas")[0];
-    let renderingContext = canvas.getContext("2d");
+    let ctx = canvas.getContext("2d");
 
     // This is effectively a visual tester, so we just lay out our variables without much structure.
     let xwingX = 500;
@@ -31,36 +31,36 @@
 
         lastTimestamp = timestamp;
 
-        renderingContext.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        renderingContext.save();
-        renderingContext.translate(xwingX, xwingY);
-        renderingContext.scale(xwingScale, xwingScale);
-        renderingContext.save();
+        ctx.save();
+        ctx.translate(xwingX, xwingY);
+        ctx.scale(xwingScale, xwingScale);
+        ctx.save();
         SampleSpriteLibrary.xwing({
-            renderingContext,
+            ctx,
             wingOpenAmount
         });
-        renderingContext.restore();
-        renderingContext.restore();
+        ctx.restore();
+        ctx.restore();
 
-        renderingContext.save();
-        renderingContext.translate(dstarX, dstarY);
+        ctx.save();
+        ctx.translate(dstarX, dstarY);
         SampleSpriteLibrary.deathStar({
-            renderingContext,
+            ctx,
             howReady
         });
-        renderingContext.restore();
+        ctx.restore();
 
-        renderingContext.save();
-        renderingContext.translate(computerX, computerY);
-        renderingContext.scale(computerScale, computerScale);
-        renderingContext.scale(.5, .5);
+        ctx.save();
+        ctx.translate(computerX, computerY);
+        ctx.scale(computerScale, computerScale);
+        ctx.scale(.5, .5);
         SampleSpriteLibrary.targettingComputer({
-            renderingContext,
+            ctx,
             aimAmount
         });
-        renderingContext.restore();
+        ctx.restore();
 
         aimAmount += .005;
 

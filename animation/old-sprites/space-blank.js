@@ -15,19 +15,19 @@
     };
     spaceBlank.src = "images/backgrounds/space-blank.svg";
 
-    let drawSpaceBlank = (renderingContext) => {
-        renderingContext.save();
+    let drawSpaceBlank = (ctx) => {
+        ctx.save();
         if (readySpaceBlank) {
-            renderingContext.drawImage(spaceBlank, -SPACE_WIDTH / 2, -SPACE_HEIGHT / 2, SPACE_WIDTH, SPACE_HEIGHT);
+            ctx.drawImage(spaceBlank, -SPACE_WIDTH / 2, -SPACE_HEIGHT / 2, SPACE_WIDTH, SPACE_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.spaceBlank = (frontier) => {
-        let renderingContext = frontier.renderingContext;
+        let ctx = frontier.ctx;
 
-        renderingContext.save();
-        drawSpaceBlank(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawSpaceBlank(ctx);
+        ctx.restore();
     };
 })();

@@ -15,20 +15,20 @@
     };
     tieFighterVader.src = "images/tie-fighters/tie-fighter-vader.svg";
 
-    let drawTieFighterVader = (renderingContext) => {
-        renderingContext.save();
+    let drawTieFighterVader = (ctx) => {
+        ctx.save();
         if (readyTieFighterVader) {
-            renderingContext.drawImage(tieFighterVader,
+            ctx.drawImage(tieFighterVader,
                 -FIGHTERS_WIDTH / 2, -FIGHTERS_HEIGHT / 2, FIGHTERS_WIDTH, FIGHTERS_HEIGHT);
         }
-        renderingContext.restore();
+        ctx.restore();
     };
 
     SampleSpriteLibrary.tieFighterVader = (commander) => {
-        let renderingContext = commander.renderingContext;
+        let ctx = commander.ctx;
 
-        renderingContext.save();
-        drawTieFighterVader(renderingContext);
-        renderingContext.restore();
+        ctx.save();
+        drawTieFighterVader(ctx);
+        ctx.restore();
     };
 })();
