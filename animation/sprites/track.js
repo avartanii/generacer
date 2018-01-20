@@ -22,7 +22,7 @@
     ctx.save();
 
     // ctx.fillStyle = radialGradient;
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = 'black';
 
     // Perimeter
     ctx.lineWidth = 10;
@@ -33,6 +33,8 @@
     ctx.lineTo(250, 250);
     ctx.arc(250, 0, 250, 1 / 2 * Math.PI, 3 / 2 * Math.PI, true);
     ctx.lineTo(250, -100); // Gate line
+    ctx.fillStyle = '#ffe6b5';
+    ctx.fill();
     ctx.stroke();
 
     // Inside boundary
@@ -43,6 +45,8 @@
     ctx.arc(-250, 0, 100, 3 / 2 * Math.PI, 1 / 2 * Math.PI, true);
     ctx.lineTo(250, 100);
     ctx.arc(250, 0, 100, 1 / 2 * Math.PI, 3 / 2 * Math.PI, true);
+    ctx.fillStyle = 'white';
+    ctx.fill();
     ctx.stroke();
 
     // Gates

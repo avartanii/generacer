@@ -30,7 +30,6 @@
   // - sx, sy: the scale factor of the sprite (default is 1, 1)
   // - rotate: the rotation angle of the sprite (default is 0)
   let initializeAnimation = (settings) => {
-    console.log('hello');
     // We need to keep track of the current frame.
     let currentFrame = 0;
 
