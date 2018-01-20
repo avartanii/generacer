@@ -14,5 +14,22 @@
         "showing": false
       }
     ]
+  },
+
+  {
+    "sprite": "horse",
+    "keyframes": [
+      {
+        "frame": 0,
+        "tx": 516,
+        "ty": 368,
+        "showing": true
+      },
+
+      {
+        "frame": 5000,
+        "showing": false
+      }
+    ]
   }
 ]

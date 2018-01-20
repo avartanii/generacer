@@ -10,7 +10,6 @@
   // Mainly, it needs to know the rendering context to use.  And the animations to display,
   // of course.
   $.getJSON("scene.json").then((scene) => {
-    console.log('hi');
     let canvas = $("#canvas")[0];
     KeyframeTweener.initialize({
       ctx: canvas.getContext("2d"),

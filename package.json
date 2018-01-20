@@ -38,7 +38,7 @@
       "no-eval": 2,
       "no-global-assign": 2,
       "no-lone-blocks": 2,
-      "no-multi-spaces": 2,
+      "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
       "no-return-assign": 2,
       "brace-style": [
         2,
