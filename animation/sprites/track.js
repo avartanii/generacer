@@ -1,11 +1,20 @@
 (() => {
   window.SampleSpriteLibrary = window.SampleSpriteLibrary || {};
 
-  // Max number of gate slots on track
-  const NUMBER_OF_GATES = 14;
+  // GATE CONSTANTS
+  const NUMBER_OF_GATES = 14; // Max number of gate slots on track
   const OPEN = true;
   const CLOSED = false;
-  const GATE_WIDTH = 10;
+  const GATE_WIDTH = 10; // Point width of gate door
+  const GATE_LENGTH = 25; // Point length of gate sides
+
+  // TRACK CONSTANTS
+  const TRACK_TOTAL_WIDTH = 250;
+  const TRACK_WIDTH = 150;
+  const TRACK_GATE_MARGIN = 5;
+  const TRACK_OUTER_RADIUS = 250;
+  const TRACK_INNER_RADIUS = 100;
+  const TRACK_COLOR = '#ffe6b5';
 
   // Populate gates object with key values indicating gate openness
   let gates = (() => {
@@ -27,15 +36,15 @@
     // Perimeter
     ctx.lineWidth = 10;
     ctx.beginPath();
-    ctx.moveTo(250, -250);
-    ctx.lineTo(-250, -250);
-    ctx.arc(-250, 0, 250, 3 / 2 * Math.PI, 1 / 2 * Math.PI, true);
-    ctx.lineTo(250, 250);
-    ctx.arc(250, 0, 250, 1 / 2 * Math.PI, 3 / 2 * Math.PI, true);
-    ctx.lineTo(250, -100); // Gate line
-    ctx.fillStyle = '#ffe6b5';
+    ctx.moveTo(TRACK_TOTAL_WIDTH, -TRACK_TOTAL_WIDTH);
+    ctx.lineTo(-TRACK_TOTAL_WIDTH, -TRACK_TOTAL_WIDTH);
+    ctx.arc(-TRACK_TOTAL_WIDTH, 0, TRACK_OUTER_RADIUS, 3 / 2 * Math.PI, 1 / 2 * Math.PI, true);
+    ctx.lineTo(TRACK_TOTAL_WIDTH, TRACK_TOTAL_WIDTH);
+    ctx.arc(TRACK_TOTAL_WIDTH, 0, TRACK_OUTER_RADIUS, 1 / 2 * Math.PI, 3 / 2 * Math.PI, true);
+    ctx.lineTo(TRACK_TOTAL_WIDTH, -(TRACK_TOTAL_WIDTH - TRACK_WIDTH)); // Gate line
+    ctx.fillStyle = TRACK_COLOR;
     ctx.fill();
-    ctx.stroke();
+    // ctx.stroke();
 
     // Inside boundary
     ctx.lineWidth = 10;
@@ -47,15 +56,15 @@
     ctx.arc(250, 0, 100, 1 / 2 * Math.PI, 3 / 2 * Math.PI, true);
     ctx.fillStyle = 'white';
     ctx.fill();
-    ctx.stroke();
+    // ctx.stroke();
 
     // Gates
-    ctx.lineWidth = .5;
-    for (let i = 1; i < 16; i += 1) {
+    ctx.lineWidth = 3;
+    for (let i = 0; i < NUMBER_OF_GATES + 1; i += 1) {
       ctx.beginPath();
-      let targetY = -250 + (10 * i);
-      ctx.moveTo(250, targetY);
-      ctx.lineTo(225, targetY);
+      let targetY = -(TRACK_TOTAL_WIDTH - TRACK_GATE_MARGIN) + (GATE_WIDTH * i);
+      ctx.moveTo(TRACK_TOTAL_WIDTH, targetY);
+      ctx.lineTo(TRACK_TOTAL_WIDTH - GATE_LENGTH, targetY);
       ctx.stroke();
     }
 
@@ -63,17 +72,16 @@
   };
 
   // TODO: Clean up magic numbers
-  // TODO: Adjust to display correctly
   let drawGates = (ctx) => {
     ctx.save();
-    ctx.lineWidth = .5;
-    for (let i = 0; i < Object.keys(gates).length; i += 1) {
-      let startX = 225;
-      let startY = -250 + (i * GATE_WIDTH);
+    ctx.lineWidth = 1;
+    for (let i = 0; i < NUMBER_OF_GATES; i += 1) {
+      let startX = TRACK_TOTAL_WIDTH - GATE_LENGTH;
+      let startY = -(TRACK_INNER_RADIUS + TRACK_GATE_MARGIN) - (i * GATE_WIDTH);
       let targetX = startX;
-      let targetY = -250 + ((i - 1) * GATE_WIDTH);
+      let targetY = -(TRACK_INNER_RADIUS + TRACK_GATE_MARGIN) - ((i + 1) * GATE_WIDTH);
       if (gates[i]) {
-        targetX = 215;
+        targetX = TRACK_TOTAL_WIDTH - GATE_WIDTH - GATE_LENGTH; // Open gate
         targetY = startY;
       }
       ctx.beginPath();
@@ -85,9 +93,7 @@
   };
 
   let openGate = (openGates) => {
-    console.log('gates: ', gates);
     openGates.forEach((gate) => {
-      console.log('gate: ', gate);
       gates[gate] = OPEN;
     });
   };
