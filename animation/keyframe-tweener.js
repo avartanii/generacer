@@ -60,14 +60,16 @@
       });
     };
 
-    let around = (currentTime, start, distance, duration) => {
+    let around = (currentTime, start, distance, duration, quarter) => {
       let percentComplete = currentTime / duration;
-      console.log("X: ", 100 * Math.cos((1 - percentComplete) * Math.PI / 2));
-      console.log("Y: ", -100 * Math.sin((1 - percentComplete) * Math.PI / 2));
-      return {
-        'x': start - (100 * Math.cos((1 - percentComplete) * Math.PI / 2)),
-        'y': start - (100 * Math.sin((1 - percentComplete) * Math.PI / 2))
-      };
+      return quarter === "q2" ? {
+        'x': start - (110 * Math.cos((1 - percentComplete) * Math.PI / 2)),
+        'y': start + 110 * (1 - Math.sin((1 - percentComplete) * Math.PI / 2))
+      } :
+        {
+          'x': start - (110 * Math.cos(percentComplete * Math.PI / 2)),
+          'y': start + (110 * Math.sin(percentComplete * Math.PI / 2))
+        };
     };
 
     // Check previous keyframes for value if undefined at current keyframe
@@ -179,7 +181,6 @@
               if (val === 'tx') {
                 let pos;
                 let quarter = endKeyframe['fraction'];
-                console.log("QUARTER: ", quarter);
                 if (quarter === 'q2') {
                   pos = around(currentTweenFrame, (width / 2) + start, distance, duration, quarter);
                   ctx.translate(pos['x'], 0);
