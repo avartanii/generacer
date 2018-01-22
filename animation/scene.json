@@ -27,28 +27,36 @@
       },
 
       {
-        "frame": 120,
+        "frame": 100,
+        "tx": 230,
+        "ty": -110,
+        "openGate": true,
+        "showing": true
+      },
+
+      {
+        "frame": 220,
         "fraction": "q1",
         "tx": -250,
         "ty": -110
       },
 
       {
-        "frame": 160,
+        "frame": 260,
         "fraction": "q2",
         "tx": -250,
         "ty": 0
       },
 
       {
-        "frame": 200,
+        "frame": 300,
         "fraction": "q3",
         "tx": -250,
         "ty": 110
       },
 
       {
-        "frame": 320,
+        "frame": 420,
         "fraction": "q4",
         "tx": 250,
         "ty": 110
@@ -72,28 +80,36 @@
       },
 
       {
-        "frame": 125,
+        "frame": 100,
+        "tx": 230,
+        "ty": -130,
+        "openGate": true,
+        "showing": true
+      },
+
+      {
+        "frame": 225,
         "fraction": "q1",
         "tx": -250,
         "ty": -110
       },
 
       {
-        "frame": 164,
+        "frame": 264,
         "fraction": "q2",
         "tx": -250,
         "ty": 0
       },
 
       {
-        "frame": 203,
+        "frame": 303,
         "fraction": "q3",
         "tx": -250,
         "ty": 110
       },
 
       {
-        "frame": 329,
+        "frame": 429,
         "fraction": "q4",
         "tx": 250,
         "ty": 110
@@ -117,28 +133,36 @@
       },
 
       {
-        "frame": 122,
+        "frame": 100,
+        "tx": 230,
+        "ty": -140,
+        "openGate": true,
+        "showing": true
+      },
+
+      {
+        "frame": 222,
         "fraction": "q1",
         "tx": -250,
         "ty": -110
       },
 
       {
-        "frame": 162,
+        "frame": 262,
         "fraction": "q2",
         "tx": -250,
         "ty": 0
       },
 
       {
-        "frame": 203,
+        "frame": 303,
         "fraction": "q3",
         "tx": -250,
         "ty": 110
       },
 
       {
-        "frame": 330,
+        "frame": 430,
         "fraction": "q4",
         "tx": 250,
         "ty": 110
@@ -162,28 +186,36 @@
       },
 
       {
-        "frame": 123,
+        "frame": 100,
+        "tx": 230,
+        "ty": -120,
+        "openGate": true,
+        "showing": true
+      },
+
+      {
+        "frame": 223,
         "fraction": "q1",
         "tx": -250,
         "ty": -110
       },
 
       {
-        "frame": 163,
+        "frame": 263,
         "fraction": "q2",
         "tx": -250,
         "ty": 0
       },
 
       {
-        "frame": 202,
+        "frame": 302,
         "fraction": "q3",
         "tx": -250,
         "ty": 110
       },
 
       {
-        "frame": 348,
+        "frame": 448,
         "fraction": "q4",
         "tx": 250,
         "ty": 110

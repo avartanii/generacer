@@ -13,6 +13,8 @@
 
     let vals = []; // values defined in keyframes
 
+    let openGates = [];
+
     let valueDefaults = { // default values for values in vals[]
       tx: 0,
       ty: 0,
@@ -234,11 +236,15 @@
                 showing = (startKeyframe.showing || past.val);
               } else if (val === 'direction') {
                 direction = (startKeyframe.direction || past.val);
+              } else if (val === 'openGate') {
+                if (start) {
+                  openGates.push(i - 1);
+                }
               }
             });
             // NEW CODE ***************************************************
 
-            let openGates = [1, 2, 5, 9];
+            // let openGates = [1, 2, 5, 9];
             if (showing === true) {
               SampleSpriteLibrary[scene[i].sprite]({
                 ctx,
