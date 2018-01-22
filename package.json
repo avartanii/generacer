@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Horse race renderer",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "requirejs": "^2.3.5"
+  },
   "devDependencies": {
     "eslint": "^4.15.0"
   },
@@ -38,7 +40,12 @@
       "no-eval": 2,
       "no-global-assign": 2,
       "no-lone-blocks": 2,
-      "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
+      "no-multi-spaces": [
+        "error",
+        {
+          "ignoreEOLComments": true
+        }
+      ],
       "no-return-assign": 2,
       "brace-style": [
         2,
