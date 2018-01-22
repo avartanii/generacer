@@ -3,41 +3,17 @@
 * canvas elements.
 */
 (() => {
-  // The big one: animation initialization.  The settings parameter
-  // is expected to be a JavaScript object with the following
-  // properties:
-  //
-  // - ctx: the 2D canvas rendering context to use
-  // - width: the width of the canvas element
-  // - height: the height of the canvas element
-  // - scene: the array of sprites to animate
-  // - frameRate: number of frames per second (default 24)
-  //
-  // In turn, each sprite is a JavaScript object with the following
-  // properties:
-  //
-  // - draw: the function that draws the sprite
-  // - keyframes: the array of keyframes that the sprite should follow
-  //
-  // Finally, each keyframe is a JavaScript object with the following
-  // properties.  Unlike the other objects, defaults are provided in
-  // case a property is not present:
-  //
-  // - frame: the global animation frame number in which this keyframe
-  //          is to appear
-  // - ease: the easing function to use (default is KeyframeTweener.linear)
-  // - tx, ty: the location of the sprite (default is 0, 0)
-  // - sx, sy: the scale factor of the sprite (default is 1, 1)
-  // - rotate: the rotation angle of the sprite (default is 0)
+
   let initializeAnimation = (settings) => {
     // We need to keep track of the current frame.
     let currentFrame = 0;
 
-    let keyframeData = {};
+    let keyframeData = {}; // parsed from scene.json
+    let horseData = {};
 
-    let vals = [];
+    let vals = []; // values defined in keyframes
 
-    let valueDefaults = {
+    let valueDefaults = { // default values for values in vals[]
       tx: 0,
       ty: 0,
       sx: 1.0,
@@ -60,45 +36,81 @@
 
     let previousTimestamp = null;
 
+    // Assuming horses' names, places, and distances are in 2D Array
+    let calculateVelocities = (raceData, timeData) => {
+      raceData.forEach((horse) => {
+        horseData[horse] = {
+          's': horse[1],   // Start
+          'q1': horse[2],  // Quarter 1
+          'd1': horse[3],  // Distance ahead
+          'q2': horse[4],  // Half
+          'd2': horse[5],  // Distance ahead
+          'q3': horse[6],  // Three Quarters
+          'd3': horse[7],  // Distance ahead
+          'str': horse[8], // Stretch
+          'd4': horse[9],  // Distance ahead
+          'q4': horse[10],  // Finish
+          'd5': horse[11]  // Distance ahead
+        };
+        if (horseData[horse]['q4'] === 1) {
+          for (let i = 0; i < timeData.length - 1; i += 1) {
+            horseData[horse][`v${i}`] = .25 / (timeData[i + 1] - timeData[i]); // TODO: replace with parameterized race length
+          }
+        }
+      });
+    };
+
+    let around = (currentTime, start, distance, duration) => {
+      let percentComplete = currentTime / duration;
+      console.log("X: ", 100 * Math.cos((1 - percentComplete) * Math.PI / 2));
+      console.log("Y: ", -100 * Math.sin((1 - percentComplete) * Math.PI / 2));
+      return {
+        'x': start - (100 * Math.cos((1 - percentComplete) * Math.PI / 2)),
+        'y': start - (100 * Math.sin((1 - percentComplete) * Math.PI / 2))
+      };
+    };
+
+    // Check previous keyframes for value if undefined at current keyframe
+    let checkPastFrames = (sprite, value, defaultVal) => {
+      if (keyframeData[sprite].hasOwnProperty(value)) {
+        let reference = keyframeData[sprite][value];
+        let previousFrame = 0;
+        for (let frameNumber in reference) {
+          if (reference.hasOwnProperty(frameNumber)) {
+            if (frameNumber > currentFrame) {
+              return {val: (reference[previousFrame] || defaultVal), frame: previousFrame};
+            } else {
+              previousFrame = frameNumber;
+            }
+          }
+        }
+        return {val: reference[previousFrame], frame: currentFrame};
+      } else {
+        return {val: defaultVal, frame: currentFrame};
+      }
+    };
+
+    // Check future keyframes for value if undefined at current keyframe
+    let checkFutureFrames = (sprite, value, defaultVal) => {
+      if (keyframeData[sprite].hasOwnProperty(value)) {
+        let reference = keyframeData[sprite][value];
+        let lastFrame = 0;
+        for (let frameNumber in reference) {
+          if (reference.hasOwnProperty(frameNumber)) {
+            if (frameNumber > currentFrame) {
+              return {val: reference[frameNumber], frame: frameNumber};
+            } else if (frameNumber < currentFrame) {
+              lastFrame = frameNumber;
+            }
+          }
+        }
+        return {val: reference[lastFrame], frame: lastFrame};
+      } else {
+        return {val: defaultVal, frame: currentFrame};
+      }
+    };
+
     let nextFrame = (timestamp) => {
-
-      let checkPastFrames = (sprite, value, defaultVal) => {
-        if (keyframeData[sprite].hasOwnProperty(value)) {
-          let reference = keyframeData[sprite][value];
-          let previousFrame = 0;
-          for (let frameNumber in reference) {
-            if (reference.hasOwnProperty(frameNumber)) {
-              if (frameNumber > currentFrame) {
-                return {val: (reference[previousFrame] || defaultVal), frame: previousFrame};
-              } else {
-                previousFrame = frameNumber;
-              }
-            }
-          }
-          return {val: reference[previousFrame], frame: currentFrame};
-        } else {
-          return {val: defaultVal, frame: currentFrame};
-        }
-      };
-
-      let checkFutureFrames = (sprite, value, defaultVal) => {
-        if (keyframeData[sprite].hasOwnProperty(value)) {
-          let reference = keyframeData[sprite][value];
-          let lastFrame = 0;
-          for (let frameNumber in reference) {
-            if (reference.hasOwnProperty(frameNumber)) {
-              if (frameNumber > currentFrame) {
-                return {val: reference[frameNumber], frame: frameNumber};
-              } else if (frameNumber < currentFrame) {
-                lastFrame = frameNumber;
-              }
-            }
-          }
-          return {val: reference[lastFrame], frame: lastFrame};
-        } else {
-          return {val: defaultVal, frame: currentFrame};
-        }
-      };
 
       // Bail-out #1: We just started.
       if (!previousTimestamp) {
@@ -165,15 +177,36 @@
               duration = future.frame - past.frame;
 
               if (val === 'tx') {
-                ctx.translate(
-                  ease(currentTweenFrame, start, distance, duration),
-                  0
-                );
+                let pos;
+                let quarter = endKeyframe['fraction'];
+                console.log("QUARTER: ", quarter);
+                if (quarter === 'q2') {
+                  pos = around(currentTweenFrame, (width / 2) + start, distance, duration, quarter);
+                  ctx.translate(pos['x'], 0);
+                } else if (quarter === 'q3') {
+                  pos = around(currentTweenFrame, (width / 2) + start, distance, duration, quarter);
+                  ctx.translate(pos['x'], 0);
+                } else {
+                  ctx.translate(
+                    ease(currentTweenFrame, (width / 2) + start, distance, duration),
+                    0
+                  );
+                }
               } else if (val === 'ty') {
-                ctx.translate(
-                  0,
-                  ease(currentTweenFrame, start, distance, duration)
-                );
+                let pos;
+                let quarter = endKeyframe['fraction'];
+                if (quarter === 'q2') {
+                  pos = around(currentTweenFrame, (height / 2) + start, distance, duration, quarter);
+                  ctx.translate(0, pos['y']);
+                } else if (quarter === 'q3') {
+                  pos = around(currentTweenFrame, (height / 2) + start, distance, duration, quarter);
+                  ctx.translate(0, pos['y']);
+                } else {
+                  ctx.translate(
+                    0,
+                    ease(currentTweenFrame, (height / 2) + start, distance, duration)
+                  );
+                }
               } else if (val === 'sx' || val === 'sy') {
                 ctx.scale(
                   ease(currentTweenFrame, start, distance, duration),
@@ -228,6 +261,7 @@
       window.requestAnimationFrame(nextFrame);
     };
 
+    // Populate keyframe object with scene information
     for (let i = 0, maxI = scene.length; i < maxI; i++) {
       let currentSprite = scene[i]['sprite'];
       if (!(currentSprite in keyframeData)) {

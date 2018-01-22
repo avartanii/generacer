@@ -4,8 +4,8 @@
     "keyframes": [
       {
         "frame": 0,
-        "tx": 516,
-        "ty": 368,
+        "tx": 0,
+        "ty": 0,
         "showing": true
       },
 
@@ -21,9 +21,37 @@
     "keyframes": [
       {
         "frame": 0,
-        "tx": 516,
-        "ty": 368,
+        "tx": 230,
+        "ty": -110,
         "showing": true
+      },
+
+      {
+        "frame": 120,
+        "fraction": "q1",
+        "tx": -250,
+        "ty": -110
+      },
+
+      {
+        "frame": 160,
+        "fraction": "q2",
+        "tx": -250,
+        "ty": 0
+      },
+
+      {
+        "frame": 200,
+        "fraction": "q3",
+        "tx": -250,
+        "ty": 110
+      },
+
+      {
+        "frame": 320,
+        "fraction": "q4",
+        "tx": 250,
+        "ty": 110
       },
 
       {
