@@ -59,5 +59,140 @@
         "showing": false
       }
     ]
+  },
+
+  {
+    "sprite": "horse1",
+    "keyframes": [
+      {
+        "frame": 0,
+        "tx": 230,
+        "ty": -130,
+        "showing": true
+      },
+
+      {
+        "frame": 125,
+        "fraction": "q1",
+        "tx": -250,
+        "ty": -110
+      },
+
+      {
+        "frame": 164,
+        "fraction": "q2",
+        "tx": -250,
+        "ty": 0
+      },
+
+      {
+        "frame": 203,
+        "fraction": "q3",
+        "tx": -250,
+        "ty": 110
+      },
+
+      {
+        "frame": 329,
+        "fraction": "q4",
+        "tx": 250,
+        "ty": 110
+      },
+
+      {
+        "frame": 5000,
+        "showing": false
+      }
+    ]
+  },
+
+  {
+    "sprite": "horse2",
+    "keyframes": [
+      {
+        "frame": 0,
+        "tx": 230,
+        "ty": -140,
+        "showing": true
+      },
+
+      {
+        "frame": 122,
+        "fraction": "q1",
+        "tx": -250,
+        "ty": -110
+      },
+
+      {
+        "frame": 162,
+        "fraction": "q2",
+        "tx": -250,
+        "ty": 0
+      },
+
+      {
+        "frame": 203,
+        "fraction": "q3",
+        "tx": -250,
+        "ty": 110
+      },
+
+      {
+        "frame": 330,
+        "fraction": "q4",
+        "tx": 250,
+        "ty": 110
+      },
+
+      {
+        "frame": 5000,
+        "showing": false
+      }
+    ]
+  },
+
+  {
+    "sprite": "horse3",
+    "keyframes": [
+      {
+        "frame": 0,
+        "tx": 230,
+        "ty": -120,
+        "showing": true
+      },
+
+      {
+        "frame": 123,
+        "fraction": "q1",
+        "tx": -250,
+        "ty": -110
+      },
+
+      {
+        "frame": 163,
+        "fraction": "q2",
+        "tx": -250,
+        "ty": 0
+      },
+
+      {
+        "frame": 202,
+        "fraction": "q3",
+        "tx": -250,
+        "ty": 110
+      },
+
+      {
+        "frame": 348,
+        "fraction": "q4",
+        "tx": 250,
+        "ty": 110
+      },
+
+      {
+        "frame": 5000,
+        "showing": false
+      }
+    ]
   }
 ]
