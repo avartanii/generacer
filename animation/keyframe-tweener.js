@@ -54,11 +54,6 @@
           'q4': horse[10],  // Finish
           'd5': horse[11]  // Distance ahead
         };
-        if (horseData[horse]['q4'] === 1) {
-          for (let i = 0; i < timeData.length - 1; i += 1) {
-            horseData[horse][`v${i}`] = .25 / (timeData[i + 1] - timeData[i]); // TODO: replace with parameterized race length
-          }
-        }
       });
     };
 
