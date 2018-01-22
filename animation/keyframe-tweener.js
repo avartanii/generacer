@@ -9,7 +9,6 @@
     let currentFrame = 0;
 
     let keyframeData = {}; // parsed from scene.json
-    let horseData = {};
 
     let vals = []; // values defined in keyframes
 
@@ -37,25 +36,6 @@
     let scene = settings.scene;
 
     let previousTimestamp = null;
-
-    // Assuming horses' names, places, and distances are in 2D Array
-    let calculateVelocities = (raceData, timeData) => {
-      raceData.forEach((horse) => {
-        horseData[horse] = {
-          's': horse[1],   // Start
-          'q1': horse[2],  // Quarter 1
-          'd1': horse[3],  // Distance ahead
-          'q2': horse[4],  // Half
-          'd2': horse[5],  // Distance ahead
-          'q3': horse[6],  // Three Quarters
-          'd3': horse[7],  // Distance ahead
-          'str': horse[8], // Stretch
-          'd4': horse[9],  // Distance ahead
-          'q4': horse[10],  // Finish
-          'd5': horse[11]  // Distance ahead
-        };
-      });
-    };
 
     let around = (currentTime, start, distance, duration, quarter) => {
       let percentComplete = currentTime / duration;
@@ -157,15 +137,9 @@
             let distance;
             let currentTweenFrame;
             let duration;
-            let wingOpenAmount;
-            let aimAmount;
-            let howReady;
             let showing;
-            let direction;
 
             vals.forEach((val) => {
-              // console.log('Val: ', val);
-              // console.log('Val default: ', valueDefaults[val]);
               past = checkPastFrames(scene[i]['sprite'], val, valueDefaults[val]);
               future = checkFutureFrames(scene[i]['sprite'], val, valueDefaults[val]);
 
@@ -221,16 +195,8 @@
               } else if (val === 'opacity') {
                 ctx.globalAlpha =
                 ease(currentTweenFrame, start, distance, duration);
-              } else if (val === 'wingOpenAmount') {
-                wingOpenAmount = ease(currentTweenFrame, start, distance, duration);
-              } else if (val === 'aimAmount') {
-                aimAmount = ease(currentTweenFrame, start, distance, duration);
-              } else if (val === 'howReady') {
-                howReady = ease(currentTweenFrame, start, distance, duration);
               } else if (val === 'showing') {
                 showing = (startKeyframe.showing || past.val);
-              } else if (val === 'direction') {
-                direction = (startKeyframe.direction || past.val);
               } else if (val === 'openGate') {
                 if (start) {
                   openGates.push(i - 1);
@@ -239,14 +205,9 @@
             });
             // NEW CODE ***************************************************
 
-            // let openGates = [1, 2, 5, 9];
             if (showing === true) {
               SampleSpriteLibrary[scene[i].sprite]({
                 ctx,
-                direction,
-                wingOpenAmount,
-                aimAmount,
-                howReady,
                 openGates
               });
             }
@@ -291,48 +252,6 @@
   };
 
   window.KeyframeTweener = {
-    // The module comes with a library of common easing functions.
-    linear: (currentTime, start, distance, duration) => {
-      let percentComplete = currentTime / duration;
-      return distance * percentComplete + start;
-    },
-
-    quadEaseIn: (currentTime, start, distance, duration) => {
-      let percentComplete = currentTime / duration;
-      return distance * percentComplete * percentComplete + start;
-    },
-
-    quadEaseOut: (currentTime, start, distance, duration) => {
-      let percentComplete = currentTime / duration;
-      return -distance * percentComplete * (percentComplete - 2) + start;
-    },
-
-    quadEaseInAndOut: (currentTime, start, distance, duration) => {
-      let percentComplete = currentTime / (duration / 2);
-      return (percentComplete < 1) ?
-        (distance / 2) * percentComplete * percentComplete + start :
-        (-distance / 2) * ((percentComplete - 1) * (percentComplete - 3) - 1) + start;
-    },
-
-    easeInOutCirc: function (currentTime, start, distance, duration) {
-      if ((currentTime /= duration / 2) < 1) {
-        return -distance / 2 * (Math.sqrt(1 - currentTime * currentTime) - 1) + start;
-      }
-      return distance / 2 * (Math.sqrt(1 - (currentTime -= 2) * currentTime) + 1) + start;
-    },
-
-    easeOutBounce: function (currentTime, start, distance, duration) {
-      if ((currentTime /= duration) < (1 / 2.75)) {
-        return distance * (7.5625 * currentTime * currentTime) + start;
-      } else if (currentTime < (2 / 2.75)) {
-        return distance * (7.5625 * (currentTime -= (1.5 / 2.75)) * currentTime + .75) + start;
-      } else if (currentTime < (2.5 / 2.75)) {
-        return distance * (7.5625 * (currentTime -= (2.25 / 2.75)) * currentTime + .9375) + start;
-      } else {
-        return distance * (7.5625 * (currentTime -= (2.625 / 2.75)) * currentTime + .984375) + start;
-      }
-    },
-
     initialize: initializeAnimation
   };
 })();
