@@ -57,7 +57,7 @@
             }
           }
           console.log(horse, distance);
-          horseTime.push((timeData[i] * 24) + (distance * 10 * 3) + 100); // Assumes timeData is in seconds TODO: fix magic number
+          horseTime.push((timeData[i] * 24) + (distance * 10 * .336) + 100); // Assumes timeData is in seconds TODO: fix magic number
         }
       }
 

@@ -19,7 +19,8 @@
     ['horse2', 2, 2, .5, 2, .5, 4, 0, 4, 0, 3, 18.5],
     ['horse3', 4, 3, 1, 3, .5, 3, .5, 3, 1.5, 4, 0],
   ];
-  let timeData = [24.90, 49.96, 74.70, 99.77];
+  // let timeData = [24.90, 49.96, 74.70, 99.77];
+  let timeData = [7, 10, 13, 20];
   createJSON(raceData, timeData);
 
   // $.getJSON("scene.json").then((scene) => {
