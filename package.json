@@ -1,6 +1,6 @@
 {
   "name": "generacer",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Horse race renderer",
   "main": "index.js",
   "dependencies": {
