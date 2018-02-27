@@ -1,0 +1,28 @@
+Generacer  Project SRS Evaluation
+=================================
+
+Nice job on this, very complete.
+
+Some suggestions.
+
+When thinking of requirements, try to be even more specific about what 
+you are specifying.  Try to make sure your requirements are "quantified"
+and don't use words like "minimal"; instead use "less than n seconds".
+
+Also, the database section needs a little more "meat" to specify what
+is actually stored there.  You don't need to specify the database engine
+for an SRS; that is more the "HOW" not the "WHAT"...
+
+These are "philosophy of requirements" issues that you can apply in a
+*general* way to nearly all the requirements in the document.  However,
+in the essence of time remaining, I'm assigning full credit to this
+deliverable, for both the initial and the final submissions.
+
+You don't have to do anything further with this document if you don't
+feel the need to do so.
+
+Deliverable D-02: 15% out of 15% = 100% which is an A-plus
+Deliverable D-05:  5% out of  5% = 100% which is an A-plus
+
+Keep up the good work!
+
