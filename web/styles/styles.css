@@ -13,6 +13,10 @@
   margin-top: 6px;
 }
 
+.nav-link {
+  margin-right: 75px;
+}
+
 #horse-name-input .form-control {
   margin: 6px;
 }
