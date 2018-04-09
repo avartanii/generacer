@@ -1,0 +1,76 @@
+.navbar {
+  background-color: green;
+}
+
+.form-inline {
+  justify-content: center;
+}
+
+.horse-number-data .form-control {
+  width: 36px;
+  margin-left: 6px;
+  margin-right: 6px;
+  margin-top: 6px;
+}
+
+#horse-name-input .form-control {
+  margin: 6px;
+}
+
+#horse-name-label {
+  margin-left: .25rem;
+}
+
+#form-container {
+  margin-top: 3rem;
+}
+
+#number-data {
+  justify-content: center;
+}
+
+#horse-name-input-label-bar, #number-data-label-bar {
+  font-weight: bold;
+}
+
+#number-data-label-bar {
+  width: 576px;
+  margin-left: 105px;
+}
+
+.number-data-label {
+  width: 96px;
+}
+
+#start-label {
+  margin-left: 134px;
+}
+
+#quarter-label {
+  margin-left: 25px;
+}
+
+#half-label {
+  margin-left: 33px;
+}
+
+#three-quarter-label {
+  margin-left: 34px;
+}
+
+#stretch-label {
+  margin-left: 32px;
+}
+
+#final-label {
+  margin-left: 33px;
+}
+
+#submit-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#buffer {
+  margin: 50px;
+}
