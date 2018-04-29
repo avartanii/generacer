@@ -14,28 +14,27 @@
   let raceData = [
     // ['Arewehavingfunyet', 1, 1, 1, 1, 1, 1, 1 / 2, 1, 1 / 2, 1, 1 / 2],
     // ['Maddizaskar', 3, 4, 0, 4, 0, 2, 1 / 2, 2, 1, 2, 4.25],
-    // ['Perina\'s Pride', 2, 2, .5, 2, .5, 4, 0, 4, 0, 3, 18.5],
+    // ['Perina\'s Pride', 2, 2, 0.5, 2, .5, 4, 0, 4, 0, 3, 18.5],
     // ['Spa Town Parade', 4, 3, 1, 3, .5, 3, .5, 3, 1.5, 4, 0],
     ['horse', 1, 1, 1, 1, 1, 1, 1 / 2, 1, 1 / 2, 1, 1 / 2],
     ['horse1', 3, 4, 0, 4, 0, 2, 1 / 2, 2, 1, 2, 4.25],
-    ['horse2', 2, 2, .5, 2, .5, 4, 0, 4, 0, 3, 18.5],
-    ['horse3', 4, 3, 1, 3, .5, 3, .5, 3, 1.5, 4, 0],
+    ['horse2', 2, 2, 0.5, 2, 0.5, 4, 0, 4, 0, 3, 18.5],
+    ['horse3', 4, 3, 1, 3, 0.5, 3, 0.5, 3, 1.5, 4, 0],
   ];
-  let newRaceData = JSON.parse(localStorage.getItem('raceData'))
+  const newRaceData = JSON.parse(localStorage.getItem('raceData'))
   // let timeData = [24.90, 49.96, 74.70, 99.77];
-  let timeData = [7, 10, 13, 20];
-  createJSON(newRaceData, timeData);
+  const timeData = [7, 10, 13, 20];
+  createJSON(raceData, timeData);
 
   // $.getJSON("scene.json").then((scene) => {
-  let sceneJSON = JSON.parse(localStorage.getItem('scene'));
+  const sceneJSON = JSON.parse(localStorage.getItem('scene'));
   // $.getJSON().then((scene) => {
-  let canvas = $("#canvas")[0];
+  const canvas = $('#canvas')[0];
   KeyframeTweener.initialize({
-    ctx: canvas.getContext("2d"),
+    ctx: canvas.getContext('2d'),
     width: canvas.width,
     height: canvas.height,
-    scene: sceneJSON
-    // scene: scene
+    scene: sceneJSON,
   });
   // });
 })();

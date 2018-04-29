@@ -78,3 +78,7 @@
 #buffer {
   margin: 50px;
 }
+
+#canvas-container {
+  text-align: center;
+}
