@@ -26,12 +26,6 @@
 
     const getPlateX = place => (place < 5 ? (-270 + ((place - 1) * 180)) : (-270 + (4 * 180)));
 
-    const getX = (horse, q) => {
-      if (q === 'q1') {
-        return -250;
-      }
-    };
-
     raceData.forEach((horse) => { // raceData is a 2D array
       horseData[horse[0]] = {
         name: horse[1], // Start
@@ -55,20 +49,14 @@
       const horseTime = [];
 
       for (let i = 0; i < timeData.length; i += 1) {
-        if (horseData[horse][`q${i + 1}`] === 1) { // If first place horse
-          // Assumes timeData is in seconds and last 3 are split times TODO: fix magic number
-          horseTime.push((timeData[i] * 24) + 100);
-        } else {
-          let distance = 0;
-          Object.keys(horseData).forEach((otherHorse) => {
-            if (horseData[otherHorse][`q${i + 1}`] < horseData[horse][`q${i + 1}`]) {
-              distance += horseData[otherHorse][`d${i + 1}`];
-            }
-          });
-          // console.log(horse, distance);
-          // Assumes timeData is in seconds TODO: fix magic number
-          horseTime.push((timeData[i] * 24) + (distance * 10 * 0.336) + 100);
-        }
+        let distance = 0;
+        Object.keys(horseData).forEach((otherHorse) => {
+          if (horseData[otherHorse][`q${i + 1}`] < horseData[horse][`q${i + 1}`]) {
+            distance += horseData[otherHorse][`d${i + 1}`];
+          }
+        });
+        // Assumes timeData is in seconds TODO: fix magic number
+        horseTime.push((timeData[i] * 24) + (distance * 10 * 0.336) + 100);
       }
 
       const horseJSON = {
@@ -130,6 +118,8 @@
       console.log('q2: ', (horseData[horse].q2));
       console.log('q3: ', (horseData[horse].q3));
       console.log('q4: ', (horseData[horse].q4));
+
+      console.log('horsetime shit: ', horseTime);
 
       const plateJSON = {
         sprite: `horsePlate${horseNumber}`,

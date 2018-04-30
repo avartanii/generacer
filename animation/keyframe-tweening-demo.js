@@ -17,10 +17,14 @@
     // ['Maddizaskar', 3, 4, 0, 4, 0, 2, 1 / 2, 2, 1, 2, 4.25],
     // ['Perina\'s Pride', 2, 2, 0.5, 2, .5, 4, 0, 4, 0, 3, 18.5],
     // ['Spa Town Parade', 4, 3, 1, 3, .5, 3, .5, 3, 1.5, 4, 0],
-    ['horse0', 'horse0', 1, 1, 1, 1, 1, 1, 1 / 2, 1, 1 / 2, 1, 1 / 2],
-    ['horse1', 'horse1', 3, 4, 0, 4, 0, 2, 1 / 2, 2, 1, 2, 4.25],
-    ['horse2', 'horse2', 2, 2, 0.5, 2, 0.5, 4, 0, 4, 0, 3, 18.5],
-    ['horse3', 'horse3', 4, 3, 1, 3, 0.5, 3, 0.5, 3, 1.5, 4, 0],
+    // ['horse0', 'horse0', 3, 4, 0, 4, 0, 2, 1 / 2, 2, 1, 2, 4.25],
+    // ['horse1', 'horse1', 1, 1, 1, 1, 1, 1, 1 / 2, 1, 1 / 2, 1, 1 / 2],
+    // ['horse2', 'horse2', 2, 2, 0.5, 2, 0.5, 4, 0, 4, 0, 3, 18.5],
+    // ['horse3', 'horse3', 4, 3, 1, 3, 0.5, 3, 0.5, 3, 1.5, 4, 0],
+    ['horse0', 'horse0', 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1.5],
+    ['horse1', 'horse1', 1, 2, 2, 1, 1.5, 2, 2, 1, 1, 1, 2.25],
+    ['horse2', 'horse2', 4, 3, 1.5, 3, 2, 3, 1.5, 3, 2, 3, 3],
+    ['horse3', 'horse3', 3, 4, 0, 4, 0, 4, 0, 4, 0, 4, 0],
   ];
   const newRaceData = JSON.parse(localStorage.getItem('raceData'));
   const newTimeData = JSON.parse(localStorage.getItem('timeData'));
