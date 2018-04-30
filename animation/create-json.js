@@ -183,6 +183,25 @@
       horseNumber += 1;
     });
 
+    const mask = {
+      sprite: 'mask',
+      keyframes: [
+        {
+          frame: 0,
+          tx: 0,
+          ty: 0,
+          showing: true,
+        },
+
+        {
+          frame: 7000,
+          showing: false,
+        },
+      ],
+    };
+
+    scene.push(mask);
+
     const finalJSON = JSON.stringify(scene);
     console.log('scene: ', scene);
 
