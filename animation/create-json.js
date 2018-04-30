@@ -24,7 +24,7 @@
 
     scene.push(track);
 
-    const getPlateX = place => (-270 + ((place - 1) * 180));
+    const getPlateX = place => (place < 5 ? (-270 + ((place - 1) * 180)) : (-270 + (4 * 180)));
 
     raceData.forEach((horse) => { // raceData is a 2D array
       horseData[horse[0]] = {

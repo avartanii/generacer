@@ -199,7 +199,7 @@
                 showing = (startKeyframe.showing || past.val);
               } else if (val === 'openGate') {
                 if (start) {
-                  openGates.push(i - 1);
+                  openGates.push((i - 1) / 2);
                 }
               }
             });
