@@ -26,6 +26,12 @@
 
     const getPlateX = place => (place < 5 ? (-270 + ((place - 1) * 180)) : (-270 + (4 * 180)));
 
+    const getX = (horse, q) => {
+      if (q === 'q1') {
+        return -250;
+      }
+    };
+
     raceData.forEach((horse) => { // raceData is a 2D array
       horseData[horse[0]] = {
         name: horse[1], // Start
@@ -65,10 +71,8 @@
         }
       }
 
-      // console.log(horse, horseTime);
-
       const horseJSON = {
-        sprite: horse, // TODO: FIX NAME ******************************************
+        sprite: horse,
         name: horseData[horse].name,
         keyframes: [
           {
