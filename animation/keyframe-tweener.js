@@ -152,10 +152,10 @@
               if (val === 'tx') {
                 let pos;
                 let quarter = endKeyframe['fraction'];
-                if (quarter === 'q2') {
+                if (quarter === 'q2' && !scene[i].sprite.includes('Plate')) {
                   pos = around(currentTweenFrame, (width / 2) + start, distance, duration, quarter);
                   ctx.translate(pos['x'], 0);
-                } else if (quarter === 'q3') {
+                } else if (quarter === 'q3' && !scene[i].sprite.includes('Plate')) {
                   pos = around(currentTweenFrame, (width / 2) + start, distance, duration, quarter);
                   ctx.translate(pos['x'], 0);
                 } else {
@@ -167,10 +167,10 @@
               } else if (val === 'ty') {
                 let pos;
                 let quarter = endKeyframe['fraction'];
-                if (quarter === 'q2') {
+                if (quarter === 'q2' && !scene[i].sprite.includes('Plate')) {
                   pos = around(currentTweenFrame, (height / 2) + start, distance, duration, quarter);
                   ctx.translate(0, pos['y']);
-                } else if (quarter === 'q3') {
+                } else if (quarter === 'q3' && !scene[i].sprite.includes('Plate')) {
                   pos = around(currentTweenFrame, (height / 2) + start, distance, duration, quarter);
                   ctx.translate(0, pos['y']);
                 } else {
@@ -206,11 +206,6 @@
             // NEW CODE ***************************************************
 
             if (showing === true) {
-              console.log("SampleSpriteLibrary: ", SampleSpriteLibrary);
-              console.log("scene: ", scene);
-              console.log("I: ", i);
-              console.log("scene[i].sprite: ", scene[i].sprite);
-              console.log('func: ', SampleSpriteLibrary[scene[i].sprite]);
               SampleSpriteLibrary[scene[i].sprite]({
                 ctx,
                 openGates

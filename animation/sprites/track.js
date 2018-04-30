@@ -17,8 +17,8 @@
   const TRACK_COLOR = '#ffe6b5';
 
   // Populate gates object with key values indicating gate openness
-  let gates = (() => {
-    let gateNumbers = {};
+  const gates = (() => {
+    const gateNumbers = {};
     for (let i = 0; i < NUMBER_OF_GATES; i += 1) {
       gateNumbers[i] = CLOSED;
     }
@@ -26,8 +26,7 @@
   })();
 
 
-
-  let drawTrack = (ctx) => {
+  const drawTrack = (ctx) => {
     ctx.save();
 
     // ctx.fillStyle = radialGradient;
@@ -62,7 +61,7 @@
     ctx.lineWidth = 3;
     for (let i = 0; i < NUMBER_OF_GATES + 1; i += 1) {
       ctx.beginPath();
-      let targetY = -(TRACK_TOTAL_WIDTH - TRACK_GATE_MARGIN) + (GATE_WIDTH * i);
+      const targetY = -(TRACK_TOTAL_WIDTH - TRACK_GATE_MARGIN) + (GATE_WIDTH * i);
       ctx.moveTo(TRACK_TOTAL_WIDTH, targetY);
       ctx.lineTo(TRACK_TOTAL_WIDTH - GATE_LENGTH, targetY);
       ctx.stroke();
@@ -72,12 +71,12 @@
   };
 
   // TODO: Clean up magic numbers
-  let drawGates = (ctx) => {
+  const drawGates = (ctx) => {
     ctx.save();
     ctx.lineWidth = 1;
     for (let i = 0; i < NUMBER_OF_GATES; i += 1) {
-      let startX = TRACK_TOTAL_WIDTH - GATE_LENGTH;
-      let startY = -(TRACK_INNER_RADIUS + TRACK_GATE_MARGIN) - (i * GATE_WIDTH);
+      const startX = TRACK_TOTAL_WIDTH - GATE_LENGTH;
+      const startY = -(TRACK_INNER_RADIUS + TRACK_GATE_MARGIN) - (i * GATE_WIDTH);
       let targetX = startX;
       let targetY = -(TRACK_INNER_RADIUS + TRACK_GATE_MARGIN) - ((i + 1) * GATE_WIDTH);
       if (gates[i]) {
@@ -92,21 +91,31 @@
     ctx.restore();
   };
 
-  let openGate = (openGates) => {
+  const drawPlateBox = (ctx) => {
+    ctx.save();
+    ctx.rect(-1.5 * TRACK_TOTAL_WIDTH, 1.25 * TRACK_TOTAL_WIDTH, 3 * TRACK_TOTAL_WIDTH, 100);
+    ctx.fillStyle = 'white';
+    ctx.strokeStyle = 'black';
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  };
+
+  const openGate = (openGates) => {
     openGates.forEach((gate) => {
       gates[gate] = OPEN;
     });
   };
 
   SampleSpriteLibrary.track = (conditions) => {
-    let ctx = conditions.ctx;
-    let openGates = conditions.openGates;
+    const { ctx } = conditions;
+    const { openGates } = conditions;
 
     ctx.save();
     drawTrack(ctx);
+    drawPlateBox(ctx);
     openGate(openGates);
     drawGates(ctx);
     ctx.restore();
   };
-
 })();
