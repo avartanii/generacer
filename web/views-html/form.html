@@ -52,7 +52,6 @@
                 </div>
               </div>
 
-
               <div class="col-9">
                 <div class="row" id="number-data">
                   <!-- Start *********************************************************** -->
@@ -97,7 +96,7 @@
                   </div>
                   <!-- QuarterPos *********************************************************** -->
                   <div class="col-1 distance-val">
-                    <label for="quarter0pos">-</label>
+                    <label class="hide" for="quarter0pos">-</label>
                     <div class="form-group horse-number-data">
                       <input type="text" class="form-control" id="quarter0pos" tabindex="4" value="0">
                       <input type="text" class="form-control" id="quarter1pos" tabindex="16" value="0">
@@ -137,7 +136,7 @@
                   </div>
                   <!-- HalfPos *********************************************************** -->
                   <div class="col-1 distance-val">
-                    <label for="half0pos">-</label>
+                    <label class="hide" for="half0pos">-</label>
                     <div class="form-group horse-number-data">
                       <input type="text" class="form-control" id="half0pos" tabindex="6" value="0">
                       <input type="text" class="form-control" id="half1pos" tabindex="18" value="0">
@@ -177,7 +176,7 @@
                   </div>
                   <!-- ThreeQuarterPos *********************************************************** -->
                   <div class="col-1 distance-val">
-                    <label for="three-quarter0pos">-</label>
+                    <label class="hide" for="three-quarter0pos">-</label>
                     <div class="form-group horse-number-data">
                       <input type="text" class="form-control" id="three-quarter0pos" tabindex="8" value="0">
                       <input type="text" class="form-control" id="three-quarter1pos" tabindex="20" value="0">
@@ -217,7 +216,7 @@
                   </div>
                   <!-- StretchPos *********************************************************** -->
                   <div class="col-1 distance-val">
-                    <label for="stretch0pos">-</label>
+                    <label class="hide" for="stretch0pos">-</label>
                     <div class="form-group horse-number-data">
                       <input type="text" class="form-control" id="stretch0pos" tabindex="10" value="0">
                       <input type="text" class="form-control" id="stretch1pos" tabindex="22" value="0">
@@ -257,7 +256,7 @@
                   </div>
                   <!-- FinalPos ********************************************************** -->
                   <div class="col-1 distance-val">
-                    <label for="final0pos">-</label>
+                    <label class="hide" for="final0pos">-</label>
                     <div class="form-group horse-number-data">
                       <input type="text" class="form-control" id="final0pos" tabindex="12" value="0">
                       <input type="text" class="form-control" id="final1pos" tabindex="24" value="0">
@@ -277,8 +276,35 @@
                   </div>
                 </div>
               </div>
-            <div>
-        <div>
+            </div>
+            <div class="row time-data">
+              <div class="col-2">
+                <div class="form-group">
+                  <label for="time0">Time:</label>
+                  <input type="text" class="form-control time-input" id="time0" tabindex="168" value="0">
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="form-group">
+                  <label class="hide" for="time1">-</label>
+                  <input type="text" class="form-control time-input" id="time1" tabindex="169" value="0">
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="form-group">
+                  <label class="hide" for="time2">-</label>
+                  <input type="text" class="form-control time-input" id="time2" tabindex="170" value="0">
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="form-group">
+                  <label class="hide" for="time3">-</label>
+                  <input type="text" class="form-control time-input" id="time3" tabindex="171" value="0">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="submit-container">
         <button type="button" class="btn btn-primary" id="form-submit">Submit</button>
