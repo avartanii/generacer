@@ -10,6 +10,7 @@
   // Mainly, it needs to know the rendering context to use.  And the animations to display,
   // of course.
   console.log('RACE DATA: ', JSON.parse(localStorage.getItem('raceData')));
+  console.log('TIME DATA: ', JSON.parse(localStorage.getItem('timeData')));
   console.log('********************************************************');
   const raceData = [
     // ['Arewehavingfunyet', 1, 1, 1, 1, 1, 1, 1 / 2, 1, 1 / 2, 1, 1 / 2],
@@ -22,9 +23,10 @@
     ['horse3', 'horse3', 4, 3, 1, 3, 0.5, 3, 0.5, 3, 1.5, 4, 0],
   ];
   const newRaceData = JSON.parse(localStorage.getItem('raceData'));
-  // let timeData = [24.90, 49.96, 74.70, 99.77];
-  const timeData = [7, 10, 13, 20];
-  createJSON(newRaceData, timeData);
+  const newTimeData = JSON.parse(localStorage.getItem('timeData'));
+  // const timeData = [24.90, 49.96, 74.70, 99.77];
+  // const timeData = [7, 10, 13, 20];
+  createJSON(newRaceData, newTimeData);
 
   const sceneJSON = JSON.parse(localStorage.getItem('scene'));
   const canvas = $('#canvas')[0];

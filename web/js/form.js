@@ -2,6 +2,7 @@ window.onload = (() => {
   const $submit = document.getElementById('form-submit');
   $submit.onclick = () => {
     const raceData = [];
+    const timeData = [];
     let numberOfHorses = 0;
     for (let i = 0; i < 14; i += 1) {
       if (document.getElementById(`horse${i}`).value) {
@@ -28,7 +29,14 @@ window.onload = (() => {
     }
     console.log('raceData calc: ', raceData);
 
+    for (let i = 0; i < 4; i += 1) {
+      timeData.push(parseFloat(document.getElementById(`time${i}`).value, 10));
+    }
+
+    console.log('timeData: ', timeData);
+
     localStorage.setItem('raceData', JSON.stringify(raceData));
+    localStorage.setItem('timeData', JSON.stringify(timeData));
     window.location = '../../animation/keyframe-tweening-demo.html';
   };
 })();
