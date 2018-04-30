@@ -3,7 +3,7 @@
 
   const HORSE_RADIUS = 5;
 
-  let drawHorse = (ctx) => {
+  const drawHorse = (ctx) => {
     ctx.save();
 
     // Horse
@@ -17,11 +17,10 @@
   };
 
   SampleSpriteLibrary.horse3 = (racer) => {
-    let ctx = racer.ctx;
+    const { ctx } = racer;
 
     ctx.save();
     drawHorse(ctx);
     ctx.restore();
   };
-
 })();

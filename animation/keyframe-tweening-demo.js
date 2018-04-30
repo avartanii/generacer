@@ -10,8 +10,8 @@
   // Mainly, it needs to know the rendering context to use.  And the animations to display,
   // of course.
   console.log('RACE DATA: ', JSON.parse(localStorage.getItem('raceData')));
-  console.log('********************************************************')
-  let raceData = [
+  console.log('********************************************************');
+  const raceData = [
     // ['Arewehavingfunyet', 1, 1, 1, 1, 1, 1, 1 / 2, 1, 1 / 2, 1, 1 / 2],
     // ['Maddizaskar', 3, 4, 0, 4, 0, 2, 1 / 2, 2, 1, 2, 4.25],
     // ['Perina\'s Pride', 2, 2, 0.5, 2, .5, 4, 0, 4, 0, 3, 18.5],
@@ -21,14 +21,12 @@
     ['horse2', 2, 2, 0.5, 2, 0.5, 4, 0, 4, 0, 3, 18.5],
     ['horse3', 4, 3, 1, 3, 0.5, 3, 0.5, 3, 1.5, 4, 0],
   ];
-  const newRaceData = JSON.parse(localStorage.getItem('raceData'))
+  const newRaceData = JSON.parse(localStorage.getItem('raceData'));
   // let timeData = [24.90, 49.96, 74.70, 99.77];
   const timeData = [7, 10, 13, 20];
-  createJSON(raceData, timeData);
+  createJSON(newRaceData, timeData);
 
-  // $.getJSON("scene.json").then((scene) => {
   const sceneJSON = JSON.parse(localStorage.getItem('scene'));
-  // $.getJSON().then((scene) => {
   const canvas = $('#canvas')[0];
   KeyframeTweener.initialize({
     ctx: canvas.getContext('2d'),
@@ -36,5 +34,4 @@
     height: canvas.height,
     scene: sceneJSON,
   });
-  // });
 })();

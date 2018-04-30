@@ -206,6 +206,11 @@
             // NEW CODE ***************************************************
 
             if (showing === true) {
+              console.log("SampleSpriteLibrary: ", SampleSpriteLibrary);
+              console.log("scene: ", scene);
+              console.log("I: ", i);
+              console.log("scene[i].sprite: ", scene[i].sprite);
+              console.log('func: ', SampleSpriteLibrary[scene[i].sprite]);
               SampleSpriteLibrary[scene[i].sprite]({
                 ctx,
                 openGates

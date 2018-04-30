@@ -10,13 +10,13 @@
     ctx.lineWidth = 10;
     ctx.beginPath();
     ctx.arc(0, 0, HORSE_RADIUS, 0, 2 * Math.PI, true);
-    ctx.fillStyle = 'green';
+    ctx.fillStyle = 'red';
     ctx.fill();
 
     ctx.restore();
   };
 
-  SampleSpriteLibrary.horse1 = (racer) => {
+  SampleSpriteLibrary.horse0 = (racer) => {
     const { ctx } = racer;
 
     ctx.save();
