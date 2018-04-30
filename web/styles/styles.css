@@ -8,7 +8,7 @@
 
 .horse-number-data .form-control {
   width: 36px;
-  margin-left: 6px;
+  /* margin-left: 6px; */
   margin-right: 6px;
   margin-top: 6px;
 }
@@ -22,7 +22,7 @@
 }
 
 #horse-name-label {
-  margin-left: .25rem;
+  /* margin-left: .25rem; */
 }
 
 #form-container {
@@ -38,36 +38,36 @@
 }
 
 #number-data-label-bar {
-  width: 576px;
-  margin-left: 105px;
+  /* width: 576px; */
+  /* margin-left: 105px; */
 }
 
 .number-data-label {
-  width: 96px;
+  /* width: 96px; */
 }
 
 #start-label {
-  margin-left: 134px;
+  /* margin-left: 134px; */
 }
 
 #quarter-label {
-  margin-left: 25px;
+  /* margin-left: 25px; */
 }
 
 #half-label {
-  margin-left: 33px;
+  /* margin-left: 33px; */
 }
 
 #three-quarter-label {
-  margin-left: 34px;
+  /* margin-left: 34px; */
 }
 
 #stretch-label {
-  margin-left: 32px;
+  /* margin-left: 32px; */
 }
 
 #final-label {
-  margin-left: 33px;
+  /* margin-left: 33px; */
 }
 
 #submit-container {
