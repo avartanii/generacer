@@ -1,13 +1,31 @@
 {
   "name": "generacer",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Horse race renderer",
-  "main": "index.js",
   "dependencies": {
-    "eslint": "^4.15.0"
+    "ajv": "^6.2.0",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mocha": "^5.0.1",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.15.1",
+    "parallelshell": "^3.0.2",
+    "pug": "^2.0.0-rc.4",
+    "requirejs": "^2.3.5"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "parallelshell --wait \"nodemon web/app.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,48 +37,5 @@
   "bugs": {
     "url": "https://github.com/avartanii/generacer/issues"
   },
-  "homepage": "https://github.com/avartanii/generacer#readme",
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "jquery": true,
-      "node": true,
-      "es6": true
-    },
-    "extends": "eslint:recommended",
-    "globals": {
-      "KeyframeTweener": true,
-      "SampleSpriteLibrary": true
-    },
-    "rules": {
-      "curly": 2,
-      "eqeqeq": 2,
-      "no-eval": 2,
-      "no-global-assign": 2,
-      "no-lone-blocks": 2,
-      "no-multi-spaces": 2,
-      "no-return-assign": 2,
-      "brace-style": [2, "1tbs", { "allowSingleLine": true }],
-      "camelcase": [2, { "properties": "never" }],
-      "func-style": [2, "expression"],
-      "comma-spacing": 2,
-      "computed-property-spacing": 2,
-      "func-call-spacing": 2,
-      "indent": ["error", 2],
-      "key-spacing": 2,
-      "keyword-spacing": 2,
-      "semi-spacing": 2,
-      "space-in-parens": 2,
-      "space-infix-ops": 2,
-      "space-unary-ops": 2,
-      "spaced-comment": 2,
-      "lines-around-comment": 2,
-      "max-len": [2, 128],
-      "new-parens": 2,
-      "no-tabs": 2,
-      "operator-linebreak": [2, "after"],
-      "no-console": 1,
-      "semi": [2, "always"]
-    }
-  }
+  "homepage": "/web/views-html/index.html"
 }
