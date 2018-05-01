@@ -95,8 +95,8 @@
     ctx.save();
     ctx.rect(-1.5 * TRACK_TOTAL_WIDTH, 1.25 * TRACK_TOTAL_WIDTH, 3 * TRACK_TOTAL_WIDTH, 100);
     ctx.fillStyle = 'white';
-    ctx.strokeStyle = 'black';
     ctx.fill();
+    ctx.strokeStyle = 'black';
     ctx.stroke();
     ctx.restore();
   };

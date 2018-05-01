@@ -77,14 +77,6 @@
           y: start + (posChange * posChangeFactor),
         };
       }
-      // return quarter === 'q2' ? {
-      //   x: start - ((110 + (posChange * posChangeFactor)) * Math.cos(((1 - percentComplete) * Math.PI) / 2)),
-      //   y: start + ((110 + (posChange * posChangeFactor)) * (1 - Math.sin(((1 - percentComplete) * Math.PI) / 2))),
-      // } :
-      //   {
-      //     x: start - ((110 + (posChange * posChangeFactor)) * Math.cos((percentComplete * Math.PI) / 2)),
-      //     y: start + ((110 + (posChange * posChangeFactor)) * Math.sin((percentComplete * Math.PI) / 2))
-      //   };
     };
 
     // Check previous keyframes for value if undefined at current keyframe
@@ -220,7 +212,6 @@
                 } else if (quarter === 'q4' && !scene[i].sprite.includes('Plate')) {
                   positionChange = i > 0 ? raceData[(i - 1) / 2][9] - raceData[(i - 1) / 2][7] : 0;
                   pos = around(currentTweenFrame, (height / 2) + start, distance, duration, quarter, positionChange);
-                  console.log('start: ', start);
                   ctx.translate(0, pos['y']);
                 } else {
                   ctx.translate(
